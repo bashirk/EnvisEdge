@@ -76,10 +76,15 @@ Optionally, rename the folder by running
 
    mv kafka_2.13-3.1.0 kafka #run command with sudo if the shell raises permission error
 
+For Mac: You can follow the instructions in this guide to setup Kafka on your Mac environment.
+`Here <https://hevodata.com/learn/install-kafka-on-mac/>`__
+👈
+
+Now, run the following command on your unix (Mac/Linux) environment to run zookeeper
+
 .. code:: bash
 
    bin/zookeeper-server-start.sh config/zookeeper.properties
-   bin/kafka-server-start.sh config/server.properties
 
 Create kafka topics for the job executor
 
