@@ -86,12 +86,18 @@ Now, run the following command on your unix (Mac/Linux) environment to run zooke
 
    bin/zookeeper-server-start.sh config/zookeeper.properties
 
+Then, run this command to start the Kafka environment
+
+.. code:: bash
+
+   bin/kafka-server-start.sh config/server.properties
+
 Create kafka topics for the job executor
 
 .. code:: bash
 
    cd scripts
-   $ bash add_topics.sh
+   $ bash create_topics.sh
    Enter path to kafka Directory : <Enter the path to the kafka directory>
    kafka url: <Enter the URL on which kafka is listening e.g if you are running it on localhost it would be 127.0.0.1>
    Creating Topics...
