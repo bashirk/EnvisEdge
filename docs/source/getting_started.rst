@@ -36,13 +36,13 @@ Getting started with EnvisEdge
 
 Update the config files of the model (can be found
 `here <https://github.com/NimbleEdge/EnvisEdge/tree/main/configs>`__)
-you are going to use with logging directory:
+you are going to use as your logging directory:
 
 .. code::
 
    log_dir:
-     PATH: <path to your logging directory>
-
+     PATH: <path to your desired logging directory>
+     
 Download kafka from
 `Here <https://www.apache.org/dyn/closer.cgi?path=/kafka/3.1.0/kafka_2.13-3.1.0.tgz>`__
 👈 and start the kafka server using the following commands
