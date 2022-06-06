@@ -102,7 +102,20 @@ Create kafka topics for the job executor
    kafka url: <Enter the URL on which kafka is listening e.g if you are running it on localhost it would be 127.0.0.1>
    Creating Topics...
 
-Install the dependencies using virtual environment
+Before installing the dependencies needed for this project
+
+``cd`` back into the `EnvisEdge` project directory
+.. code:: bash
+
+   cd ~/path/to/EnvisEdge
+
+If you don't have the `virtualenv` package, you can run the command below to do the installation before proceeding
+
+.. code:: bash
+
+   sudo apt install python3-virtualenv
+
+Now, install the dependencies using virtual environment
 
 .. code:: bash
 
@@ -110,7 +123,7 @@ Install the dependencies using virtual environment
    cd env
    virtualenv envisedge
    source envisedge/bin/activate
-   pip3 install -r requirements.txt
+   pip3 install -r /path/to/requirements.txt # pip3 install -r ../requirements.txt ...in author's case
 
 Download the federated dataset
 
