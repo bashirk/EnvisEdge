@@ -42,10 +42,34 @@ you are going to use as your logging directory:
 
    log_dir:
      PATH: <path to your desired logging directory>
-     
+
 Download kafka from
 `Here <https://www.apache.org/dyn/closer.cgi?path=/kafka/3.1.0/kafka_2.13-3.1.0.tgz>`__
-👈 and start the kafka server using the following commands
+👈 and follow these next steps to start the kafka server
+
+Create a ``kafka`` directory. This will be the folder where ``kafka`` will be installed:
+
+.. code:: bash
+
+   mkdir ~/kafka 
+
+Then ``cd`` to the directory
+.. code:: bash
+
+   cd ~/kafka
+
+Next extract and unzip the kafka file archive
+
+.. code:: bash
+
+   tar -xvzf ~/<path>/<to>/<Downloaded>/kafka_2.13-3.1.0.tgz -C ~/kafka
+
+   tar -xvzf ~/Downloads/kafka_2.13-3.1.0.tgz -C ~/kafka  #author's download path
+
+Then ``cd`` back into the directory for the new file folder
+.. code:: bash
+
+   cd ~/kafka_2.13-3.1.0
 
 .. code:: bash
 
