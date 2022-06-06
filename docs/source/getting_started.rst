@@ -71,6 +71,11 @@ Then ``cd`` back into the directory for the new file folder
 
    cd ~/kafka_2.13-3.1.0
 
+Optionally, rename the folder by running
+.. code:: bash
+
+   mv kafka_2.13-3.1.0 kafka #run command with sudo if the shell raises permission error
+
 .. code:: bash
 
    bin/zookeeper-server-start.sh config/zookeeper.properties
