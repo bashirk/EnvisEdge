@@ -58,7 +58,7 @@ Then ``cd`` to the directory
 
    cd ~/kafka
 
-Next extract and unzip the kafka file archive
+Next, extract and unzip the kafka file archive
 
 .. code:: bash
 
@@ -92,7 +92,7 @@ Then, run this command to start the Kafka environment
 
    bin/kafka-server-start.sh config/server.properties
 
-Create kafka topics for the job executor
+Create ``kafka`` topics for the job executor
 
 .. code:: bash
 
@@ -142,13 +142,13 @@ that will be sent to Python workers for training the model.
 
    python preprocess_data.py --config configs/regression.yml
 
-To start the multiprocessing executor run the following command:
+To start the multiprocessing executor, run the following command:
 
 .. code:: bash
 
    $ python executor.py --config configs/regression.yml
 
-To see how traning is done run the following command:
+To see how traning is done, run the following command:
 
 .. code:: bash
 
