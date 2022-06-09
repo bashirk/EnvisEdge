@@ -123,7 +123,7 @@ Now, install the dependencies using virtual environment
    cd env
    virtualenv envisedge
    source envisedge/bin/activate
-   pip3 install -r /path/to/requirements.txt # pip3 install -r ../requirements.txt ...in author's case
+   pip3 install -r /path/to/requirements.txt
 
 Download the federated dataset
 
