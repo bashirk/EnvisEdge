@@ -113,7 +113,7 @@ If you don't have the `virtualenv` package, you can run the command below to do 
 
 .. code:: bash
 
-   sudo apt install python3-virtualenv
+   pip install virtualenv
 
 Now, install the dependencies using virtual environment
 
