@@ -7,7 +7,31 @@ import torch
 
 
 class RandomState:
+    """
+    This class represents the random state, and includes a method for restoring states
+
+    ...
+
+    Attributes
+    ----------
+    random_mod_state : object
+        the current state of the generator
+    np_state : tuple
+        the current state of the internal generator
+    torch_cpu_state : tuple
+        the state of the random number state generator of the CPU
+    torch_gpu_states : list
+        list containing the state of the random number state generator of the GPU for each device 
+
+    Method
+    -------
+    restore()
+        sets and restores the state for Numpy, Torch, & Torch RNGs
+    
+    """
+
     def __init__(self):
+        """Gets the state for Numpy, PyTorch, & RNGs."""
         self.random_mod_state = random.getstate()
         self.np_state = np.random.get_state()
         self.torch_cpu_state = torch.get_rng_state()
@@ -17,6 +41,7 @@ class RandomState:
         ]
 
     def restore(self):
+        """Sets and restores the state for Numpy, PyTorch, & RNGs."""
         random.setstate(self.random_mod_state)
         np.random.set_state(self.np_state)
         torch.set_rng_state(self.torch_cpu_state)
