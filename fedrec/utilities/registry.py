@@ -62,7 +62,7 @@ def load(kind, name):
 
 def lookup(kind, name):
     """
-    This function returns the callable object definition stored in registry.
+    This function returns the object definition stored in registry.
 
     Arguments
     ----------
@@ -73,7 +73,7 @@ def lookup(kind, name):
 
     Returns
     ----------
-    callable:
+    LOOKUP_DICT: object
           Object definition stored in registry under key kind and sub-key name.
 
     Examples
@@ -98,6 +98,24 @@ def lookup(kind, name):
 
 def construct(kind, config, unused_keys=(), **kwargs):
     """
+    This function returns an object instance by loading definition from registry, and arguments from the configuration file.
+
+    Arguments
+    ----------
+    kind: str
+          Key to search in dictionary of registry.
+    config: dict
+            Configuration dictionary loaded from YAML file
+    unused_keys: tuple
+                 Keys for values that are not passed as arguments to insantiate the object but are still present in config
+    **kwargs: dict, optional
+              Extra arguments to pass.
+
+    Returns
+    ----------
+    instantiate: object
+        Constructed object using the parameters passed in config and \**kwargs.
+
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
@@ -122,6 +140,24 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
 def instantiate(callable, config, unused_keys=(), **kwargs):
     """
+    This function instantiates an object after verifying its parameters.
+
+    Arguments
+    ----------
+    callable: callable
+              Definition of object to be instantiated.
+    config: dict
+            Arguments to construct the object.
+    unused_keys: tuple
+                 Keys for values that are not passed as arguments to insantiate the object but are still present in config.
+    **kwargs: dict, optional
+              Variable keyword arguments to pass.
+
+    Returns
+    ----------
+    callable: object
+        Instantiated object by the parameters passed in config and \**kwargs.
+
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
