@@ -24,6 +24,21 @@ LOOKUP_DICT = collections.defaultdict(dict)
 
 def load(kind, name):
     """
+    This function is a decorator to record callable object definitions for models,trainers,workers etc.
+
+    Arguments
+    ----------
+    kind: str
+          Key to store in dictionary, used to specify the kind of object (eg. model, trainer).
+    name: str
+          Sub-key under kind key, used to specify name of
+          of the object definition.
+
+    Returns
+    ----------
+    decorator:
+          Decorator function to store object definitions.
+
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
