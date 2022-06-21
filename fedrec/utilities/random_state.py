@@ -51,12 +51,43 @@ class RandomState:
 
 
 class RandomContext:
+    """
+    This class represents the context of the random state that saves the state of the RNGs.
+    
+    This class sets the state for the RNGs by using a random integer seed value, then goes ahead to set and restore the state for the RNGs. 
+    It also includes methods for checking if random state is active for RNGs, then goes ahead to set the random state if it is inactive.
+    
+    ...
+
+    Arguments
+    ----------
+    seed : optional
+        The seed value to use for the generation of the random number (default is None). Useful when seed is called in order to reset the RNG which makes the random numbers predictable
+
+    Attributes
+    ----------
+    outside_state : array
+        sets the state of the generator
+    inside_state : array
+        sets the state of the internal generator, 
+    _active : bool
+        set the active state of the RandomContext to False
+
+    Method
+    -------
+    restore()
+        sets and restores the state for Numpy, Torch, & Torch RNGs
+    
+    """
+    '''Save and restore state of PyTorch, NumPy, Python RNGs.'''
 
     def __init__(self, seed=None):
         outside_state = RandomState()
 
         random.seed(seed)
+        #make the random number generation predictable, by setting the seed value
         np.random.seed(seed)
+        #set the seed for generating random numbers as a random int
         if seed is None:
             torch.manual_seed(random.randint(-sys.maxsize - 1, sys.maxsize))
         else:
@@ -69,6 +100,7 @@ class RandomContext:
         self._active = False
 
     def __enter__(self):
+         """This method returns the saved state of the RNG, and sets the RandomContext to active only when it is already inactive"""
         if self._active:
             raise Exception('RandomContext can be active only once')
 
@@ -79,6 +111,7 @@ class RandomContext:
         self._active = True
 
     def __exit__(self, exception_type, exception_value, traceback):
+        """This method will save and restore the current state of the RNG, then proceeds to set the RandomContext to inactivate"""
         # Save current state of RNG
         self.inside_state = RandomState()
         # Restore state of RNG saved in __enter__
