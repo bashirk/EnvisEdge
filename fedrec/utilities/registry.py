@@ -24,7 +24,7 @@ LOOKUP_DICT = collections.defaultdict(dict)
 
 def load(kind, name):
     """
-    This function is a decorator to record callable object definitions for models,trainers,workers etc.
+    This function is a decorator to record callable object definitions for models, trainers, workers etc.
 
     Arguments
     ----------
@@ -36,7 +36,7 @@ def load(kind, name):
 
     Returns
     ----------
-    decorator:
+    decorator: func
           Decorator function to store object definitions.
 
     Examples
@@ -62,6 +62,20 @@ def load(kind, name):
 
 def lookup(kind, name):
     """
+    This function returns the callable object definition stored in registry.
+
+    Arguments
+    ----------
+    kind: str
+          Key to search in dictionary of registry.
+    name: str
+          Sub-key to search under kind key in dictionary of registry.
+
+    Returns
+    ----------
+    callable:
+          Object definition stored in registry under key kind and sub-key name.
+
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
