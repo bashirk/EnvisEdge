@@ -15,13 +15,13 @@ class RandomState:
 
     Attributes
     ----------
-    random_mod_state : object
+    random_mod_state: object
         the current state of the generator
-    np_state : tuple
+    np_state: tuple
         the current state of the internal generator
-    torch_cpu_state : tuple
+    torch_cpu_state: tuple
         the state of the random number state generator of the CPU
-    torch_gpu_states : list
+    torch_gpu_states: list
         list containing the state of the random number state generator of the GPU for each device 
 
     Method
@@ -42,7 +42,7 @@ class RandomState:
         ]
 
     def restore(self):
-        """Sets and restores the state for Numpy, PyTorch, & RNGs."""
+        """This class method sets and restores the state for Numpy, PyTorch, & RNGs."""
         random.setstate(self.random_mod_state)
         np.random.set_state(self.np_state)
         torch.set_rng_state(self.torch_cpu_state)
@@ -54,7 +54,7 @@ class RandomContext:
     """
     This class represents the context of the random state that saves the state of the RNGs.
     
-    This class sets the state for the RNGs by using a random integer seed value, then goes ahead to set and restore the state for the RNGs. 
+    It sets the state for the RNGs by using a random integer seed value, then goes ahead to set and restore the state for the RNGs. 
     It also includes methods for checking if random state is active for RNGs, then goes ahead to set the random state if it is inactive.
     
     ...
