@@ -23,31 +23,14 @@ LOOKUP_DICT = collections.defaultdict(dict)
 
 
 def load(kind, name):
-    '''
-    A decorator to record callable object definitions
-    for models,trainers,workers etc.
-
-    Arguments
-    ----------
-    kind: str
-          Key to store in dictionary, used to specify the
-          kind of object (eg. model, trainer).
-    name: str
-          Sub-key under kind key, used to specify name of
-          of the object definition.
-
-    Returns
-    ----------
-    callable:
-          Decorator function to store object definition.
-
+    """
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
     ... class DLRM_Net(nn.Module): # This class definition gets recorded
     ... def __init__(self, arg):
     ...     self.arg = arg
-    '''
+    """
 
     assert kind != "class_map", "reserved keyword for kind \"class_map\""
     registry = LOOKUP_DICT[kind]
@@ -63,23 +46,7 @@ def load(kind, name):
 
 
 def lookup(kind, name):
-    '''
-    Returns the callable object definition stored in registry.
-
-    Arguments
-    ----------
-    kind: str
-          Key to search in dictionary of registry.
-    name: str
-          Sub-key to search under kind key in dictionary
-          of registry.
-
-    Returns
-    ----------
-    callable:
-          Object definition stored in registry under key kind
-          and sub-key name.
-
+    """
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
@@ -89,8 +56,7 @@ def lookup(kind, name):
     >>> model = lookup('model', 'dlrm') # loads model class from registry
     >>> model  # model is a DLRM_Net object
     __main__.DLRM_Net
-    '''
-
+    """
     # check if 'name' argument is a dictionary.
     # if yes, load the value under key 'name'.
     if isinstance(name, collections.abc.Mapping):
@@ -102,27 +68,7 @@ def lookup(kind, name):
 
 
 def construct(kind, config, unused_keys=(), **kwargs):
-    '''
-    Returns an object instance by loading definition from registry,
-    and arguments from configuration file.
-
-    Arguments
-    ----------
-    kind:        str
-                 Key to search in dictionary of registry.
-    config:      dict
-                 Configuration dictionary loaded from yaml file
-    unused_keys: tuple
-                 Keys for values that are not passed as arguments to
-                 insantiate the object but are still present in config.
-    **kwargs:    dict, optional
-                 Extra arguments to pass.
-
-    Returns
-    ----------
-    object:
-        Constructed object using the parameters passed in config and \**kwargs.
-
+    """
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
@@ -132,7 +78,7 @@ def construct(kind, config, unused_keys=(), **kwargs):
     >>> model = construct('model', 'drlm', (), arg = 5)
     >>> model.arg  # model is a DLRM_Net object with arg = 5
     5
-    '''
+    """
 
     # check if 'config' argument is a string,
     # if yes, make it a dictionary.
@@ -146,26 +92,7 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
 
 def instantiate(callable, config, unused_keys=(), **kwargs):
-    '''
-    Instantiates an object after verifying the parameters.
-
-    Arguments
-    ----------
-    callable:    callable
-                 Definition of object to be instantiated.
-    config:      dict
-                 Arguments to construct the object.
-    unused_keys: tuple
-                 Keys for values that are not passed as arguments to
-                 insantiate the object but are still present in config.
-    **kwargs:    dict, optional
-                 Extra arguments to pass.
-
-    Returns
-    ----------
-    object:
-        Instantiated object by the parameters passed in config and \**kwargs.
-
+    """
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
@@ -177,7 +104,7 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
     >>> model = instantiate(call, config, ('name'))
     >>> model.arg  # model is a DRLM_Net object with arg = 5
     5
-    '''
+    """
 
     # merge config arguments and kwargs in a single dictionary.
     merged = {**config, **kwargs}

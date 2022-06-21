@@ -66,11 +66,11 @@ class RandomContext:
 
     Attributes
     ----------
-    outside_state : array
+    outside_state: array
         sets the state of the generator
-    inside_state : array
+    inside_state: array
         sets the state of the internal generator, 
-    _active : bool
+    _active: bool
         set the active state of the RandomContext to False
 
     Method
