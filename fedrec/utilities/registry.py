@@ -1,4 +1,4 @@
-'''
+"""
 The registry class makes it easy and quick to experiment with
 different algorithms, model architectures and hyperparameters.
 
@@ -11,7 +11,7 @@ code but only change the parameters in yaml configuration file.
 
 for detailed explaination on the use of registry, see:
 github.com/NimbleEdge/EnvisEdge/blob/main/docs/Tutorial-Part-2-starting_with_nimbleedge.md
-'''
+"""
 
 import collections
 import collections.abc

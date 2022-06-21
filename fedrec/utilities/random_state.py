@@ -9,7 +9,7 @@ import torch
 class RandomState:
     """
     This class represents the random state, and includes a method for restoring states.
-    It sets the state for the generator, Numpy, and the Random Number State generators (RNGs) modules.
+    It gets the state for the generator, Numpy, and the Random Number State generators (RNGs) modules.
 
     ...
 
@@ -79,7 +79,7 @@ class RandomContext:
         sets and restores the state for Numpy, Torch, & Torch RNGs
     
     """
-    '''Save and restore state of PyTorch, NumPy, Python RNGs.'''
+    """Save and restore state of PyTorch, NumPy, Python RNGs."""
 
     def __init__(self, seed=None):
         outside_state = RandomState()
