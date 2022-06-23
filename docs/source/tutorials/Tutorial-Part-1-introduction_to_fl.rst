@@ -23,7 +23,7 @@ Types of Federated learning
 
 Federated Learning is broadly classified as 
 
-* **Model Centric:**
+* **Model-Centric FL:**
   
   When the distributed data is used to improve a central model with
   a goal of delivering better centrally administered models, it is known
