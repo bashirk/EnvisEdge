@@ -2,6 +2,31 @@ from collections import defaultdict
 
 
 class WorkerDataset:
+    """
+    This class represents a worker dataset, and includes methods for adding and loading federated workers.
+
+    ...
+
+    Attributes
+    ----------
+    _workers: object
+        #
+    workers_by_types: dict
+        #
+    _len: int
+        #
+
+    Methods
+    -------
+    add_worker()
+        #
+    get_worker()
+        #
+    get_workers_by_roles()
+        #
+    
+    """
+
     def __init__(self) -> None:
         self._workers = {}
         self.workers_by_types = defaultdict(list)
