@@ -19,6 +19,8 @@ class ArgsDict(dict):
 
 
 def create_link(original, link_name):
+    """This function will symbolically link two paths if there is no link already"""
+    
     if os.path.islink(link_name):
         os.unlink(link_name)
     try:
@@ -32,6 +34,8 @@ def load_checkpoint(model,
                     model_dir,
                     map_location=None,
                     step=None):
+    """This function loads the model and the optimizer checkpoints"""
+
     path = os.path.join(model_dir, 'model_checkpoint')
     if step is not None:
         path += '-{:08d}'.format(step)
@@ -45,6 +49,8 @@ def load_checkpoint(model,
 
 
 def load_and_map_checkpoint(model, model_dir, remap):
+    """This function loads the model and the optimizer checkpoints, then maps the state dictionaries"""
+
     path = os.path.join(model_dir, 'model_checkpoint')
     print("Loading parameters %s from %s" % (remap.keys(), model_dir))
     checkpoint = torch.load(path)
@@ -63,6 +69,8 @@ def save_checkpoint(model,
                     is_best,
                     ignore=[],
                     keep_every_n=10000000):
+    """Function to save all checkpoints"""
+
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
     path_without_step = os.path.join(model_dir, 'model_checkpoint')
