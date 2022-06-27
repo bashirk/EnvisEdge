@@ -8,7 +8,7 @@ import torch
 
 class RandomState:
     """
-    This class represents the random state, and includes a method for restoring states.
+    The RandomState represents the random state, and includes a method for restoring states.
     It gets the state for the generator, Numpy, and the Random Number State generators (RNGs) modules.
 
     ...
@@ -32,7 +32,6 @@ class RandomState:
     """
 
     def __init__(self):
-        """Gets the state for Numpy, PyTorch, & RNGs."""
         self.random_mod_state = random.getstate()
         self.np_state = np.random.get_state()
         self.torch_cpu_state = torch.get_rng_state()
@@ -42,7 +41,6 @@ class RandomState:
         ]
 
     def restore(self):
-        """This class method sets and restores the state for Numpy, PyTorch, & RNGs."""
         random.setstate(self.random_mod_state)
         np.random.set_state(self.np_state)
         torch.set_rng_state(self.torch_cpu_state)
@@ -52,7 +50,7 @@ class RandomState:
 
 class RandomContext:
     """
-    This class represents the context of the random state that saves the state of the RNGs.
+    The RandomContext represents the context of the random state that saves the state of the RNGs.
     
     It sets the state for the RNGs by using a random integer seed value, then goes ahead to set and restore the state for the RNGs. 
     It also includes methods for checking if random state is active for RNGs, then goes ahead to set the random state if it is inactive.
@@ -79,7 +77,6 @@ class RandomContext:
         sets and restores the state for Numpy, Torch, & Torch RNGs
     
     """
-    """Save and restore state of PyTorch, NumPy, Python RNGs."""
 
     def __init__(self, seed=None):
         outside_state = RandomState()
@@ -100,7 +97,7 @@ class RandomContext:
         self._active = False
 
     def __enter__(self):
-         """This method returns the saved state of the RNG, and sets the RandomContext to active only when it is already inactive"""
+         """It returns the saved state of the RNG, and sets the RandomContext to active only when it is already inactive"""
         if self._active:
             raise Exception('RandomContext can be active only once')
 
@@ -111,7 +108,7 @@ class RandomContext:
         self._active = True
 
     def __exit__(self, exception_type, exception_value, traceback):
-        """This method will save and restore the current state of the RNG, then proceeds to set the RandomContext to inactivate"""
+        """It saves and restores the current state of the RNG, then proceeds to set the RandomContext to inactivate"""
         # Save current state of RNG
         self.inside_state = RandomState()
         # Restore state of RNG saved in __enter__
