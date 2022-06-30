@@ -5,17 +5,17 @@ class WorkerDataset:
     """
     It represents a worker dataset, and includes methods for adding and loading federated workers.
 
-    It also allows for the retrieval of workers based on their role IDs
+    The WorkerDataset class also allows for the retrieval of workers based on their role IDs
     ...
 
     Attributes
     ----------
-    _workers: object
-        #
+    _workers: dict
+        dict to store federated workers
     workers_by_types: dict
-        #
+        dict of all federated worker types
     _len: int
-        #
+        length of the federated workers dataset
 
     Methods
     -------
