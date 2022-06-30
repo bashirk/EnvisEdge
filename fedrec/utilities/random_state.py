@@ -86,11 +86,11 @@ class RandomContext:
     def __init__(self, seed=None):
         outside_state = RandomState()
 
-        #make the random number generation predictable, by setting the seed value
+        #initialize the random number generator and make it reproducible
         random.seed(seed)
-        #make the random number generation for the numpy module predictable, by setting the seed value
+        #make the random number generator for the numpy module reproducible, by setting the seed value
         np.random.seed(seed)
-        #set the seed for generating random numbers for the torch module as a random int
+        #initialize the random number generator (RNG) for the torch module, with the seed value being a random integer
         if seed is None:
             torch.manual_seed(random.randint(-sys.maxsize - 1, sys.maxsize))
         else:
