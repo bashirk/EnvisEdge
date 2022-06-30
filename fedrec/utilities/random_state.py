@@ -8,8 +8,8 @@ import torch
 
 class RandomState:
     """
-    The RandomState represents the random state, and includes a method for setting and restoring states.
-    It gets the state for the generator, Numpy, and the Random Number State generators (RNGs) modules.
+    The RandomState class sets random values using the random, NumPy, and PyTorch modules.
+    It returns the current internal state of the Random Number Generators of the random, NumPy, and PyTorch modules.
 
     ...
 
