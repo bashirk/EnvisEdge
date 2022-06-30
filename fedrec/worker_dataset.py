@@ -20,11 +20,11 @@ class WorkerDataset:
     Methods
     -------
     add_worker()
-        #
+        method to create new federated workers
     get_worker()
-        #
+        method to invoke a federated worker using the worker ID
     get_workers_by_roles()
-        #
+        method to invoke federated workers, based on their roles, using worker IDs
     
     """
 
