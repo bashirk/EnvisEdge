@@ -3,8 +3,9 @@ from collections import defaultdict
 
 class WorkerDataset:
     """
-    This class represents a worker dataset, and includes methods for adding and loading federated workers.
+    It represents a worker dataset, and includes methods for adding and loading federated workers.
 
+    It also allows for the retrieval of workers based on their role IDs
     ...
 
     Attributes

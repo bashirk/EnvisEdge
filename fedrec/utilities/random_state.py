@@ -8,7 +8,7 @@ import torch
 
 class RandomState:
     """
-    The RandomState represents the random state, and includes a method for restoring states.
+    The RandomState represents the random state, and includes a method for setting and restoring states.
     It gets the state for the generator, Numpy, and the Random Number State generators (RNGs) modules.
 
     ...
@@ -53,13 +53,14 @@ class RandomContext:
     The RandomContext represents the context of the random state that saves the state of the RNGs.
     
     It sets the state for the RNGs by using a random integer seed value, then goes ahead to set and restore the state for the RNGs. 
-    It also includes methods for checking if random state is active for RNGs, then goes ahead to set the random state if it is inactive.
+    The RandomContext class uses a context manager to activate the random context if it is inactive, which ensures that the values 
+    are set only one time. It also uses context managers to handle the runtime context during code execution.
     
     ...
 
     Arguments
     ----------
-    seed : optional
+    seed: optional
         The seed value to use for the generation of the random number (default is None). Useful when seed is called in order to reset the RNG which makes the random numbers predictable
 
     Attributes
@@ -71,10 +72,14 @@ class RandomContext:
     _active: bool
         set the active state of the RandomContext to False
 
-    Method
+    Methods
     -------
-    restore()
-        sets and restores the state for Numpy, Torch, & Torch RNGs
+    __enter__()
+        context manager for the RandomContext to enter the context of the runtime. 
+        It returns the saved state of the RNG, and sets the RandomContext to active only when it is already inactive
+    __exit__()
+        context manager for the RandomContext to exit the context of the runtime. It includes arguments
+        that are descriptions of the exceptions that caused the context exit
     
     """
 
@@ -108,7 +113,7 @@ class RandomContext:
         self._active = True
 
     def __exit__(self, exception_type, exception_value, traceback):
-        """It saves and restores the current state of the RNG, then proceeds to set the RandomContext to inactivate"""
+        """It saves and restores the current state of the RNG, upon exiting the runtime, then proceeds to set the RandomContext to inactivate"""
         # Save current state of RNG
         self.inside_state = RandomState()
         # Restore state of RNG saved in __enter__
