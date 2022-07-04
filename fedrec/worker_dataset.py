@@ -3,9 +3,11 @@ from collections import defaultdict
 
 class WorkerDataset:
     """
-    It represents a worker dataset, and includes methods for adding and loading federated workers.
+    It represents a worker dataset and includes methods 
+    for adding and loading federated workers.
 
-    The WorkerDataset class also allows for the retrieval of workers based on their role IDs
+    The WorkerDataset class also allows for the retrieval 
+    of workers based on their role IDs.
     ...
 
     Attributes
@@ -20,11 +22,12 @@ class WorkerDataset:
     Methods
     -------
     add_worker()
-        method to create new federated workers
+        method to create new federated workers.
     get_worker()
-        method to invoke a federated worker using the worker ID
+        method to invoke a federated worker using the worker ID.
     get_workers_by_roles()
-        method to invoke federated workers, based on their roles, using worker IDs
+        method to invoke federated workers based on their roles, 
+        using worker IDs.
     
     """
 

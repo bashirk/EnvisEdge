@@ -103,7 +103,7 @@ class RandomContext:
         self._active = False
 
     def __enter__(self):
-         """It returns the saved state of the RNG, and sets the RandomContext to active only when it is already inactive"""
+        """It returns the saved state of the RNG, and sets the RandomContext to active only when it is already inactive"""
         if self._active:
             raise Exception('RandomContext can be active only once')
 
