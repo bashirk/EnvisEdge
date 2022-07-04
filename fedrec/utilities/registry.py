@@ -216,7 +216,7 @@ class Registrable(object):
     type_name()
         returns new Reproducible method by name.
     get_name()
-        returns new Reproducible object by name. 
+        returns new Reproducible object by name.
     register_class_ref()
         adds newly annotated objects to the registry.
 
