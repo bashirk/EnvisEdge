@@ -17,7 +17,7 @@ class ArgsDict(dict):
 
     Argument
     ----------
-    **kwargs: 
+    **kwargs:
 
     """
 
@@ -59,7 +59,8 @@ def load_checkpoint(model,
 
 
 def load_and_map_checkpoint(model, model_dir, remap):
-    """It loads the model and the optimizer checkpoints, then maps the state dictionaries."""
+    """It loads the model and the optimizer checkpoints, then
+    maps the state dictionaries."""
 
     path = os.path.join(model_dir, 'model_checkpoint')
     print("Loading parameters %s from %s" % (remap.keys(), model_dir))
