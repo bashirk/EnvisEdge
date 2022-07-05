@@ -9,9 +9,10 @@ import torch
 class RandomState:
     """
     The RandomState class sets random values using the random,
-     NumPy, and PyTorch modules.
+    NumPy, and PyTorch modules.
+
     It returns the current internal state of the Random Number
-    Generators of the random, NumPy, and PyTorch modules.
+    Generators (RNGs) of the random, NumPy, and PyTorch modules.
 
     ...
 
@@ -53,15 +54,11 @@ class RandomState:
 
 class RandomContext:
     """
-    The RandomContext represents the context of the random state
-    that saves the state of the RNGs.
+    The context of the random state that saves the current state of the
+    RNGs and restores that saved state.
     
     It sets the state for the RNGs by using a random integer seed
-    value, then goes ahead to set and restore the state for the RNGs.
-    The RandomContext class uses a context manager to activate the random
-    context if it is inactive, which ensures that the values
-    are set only one time. It also uses context managers to handle the
-    runtime context during code execution.
+    value, then proceeds to save and restore the state for the RNGs.
     
     ...
 
@@ -70,28 +67,26 @@ class RandomContext:
     seed: optional
         The seed value to use for the generation of the random number
         (default is None). Useful when seed is called in order to reset
-        the RNG which makes the random numbers predictable
+        the RNG which makes the random numbers predictable.
 
     Attributes
     ----------
     outside_state: array
-        sets the state of the generator
+        sets the state of the generator.
     inside_state: array
-        sets the state of the internal generator,
+        sets the state of the internal generator.
     _active: bool
-        set the active state of the RandomContext to False
+        sets the active state of the RandomContext to False.
 
     Methods
     -------
     __enter__()
-        context manager for the RandomContext to enter the context of the
-        runtime.
-        It returns the saved state of the RNG, and sets the RandomContext
-        to active only when it is already inactive
+        ensures the RandomContext is active if it is inactive, such that
+        the values are set only once.
     __exit__()
-        context manager for the RandomContext to exit the context of the
-        runtime. It includes arguments
-        that are descriptions of the exceptions that caused the context exit
+        makes the RandomContext inactive. It also includes parameters
+        that describe exceptions that will cause the exit of the
+        RandomContext.
     
     """
 
@@ -138,9 +133,9 @@ class RandomContext:
 
 @attr.s
 class RandomizationConfig:
-    # Seed for RNG used in shuffling the training data.
+    """Sets the seed values that the RNGs will use for randomizing the
+    training data, model initialization, and model computation."""
     data_seed = attr.ib(default=None)
-    # Seed for RNG used in initializing the model.
     init_seed = attr.ib(default=None)
     # Seed for RNG used in computing the model's training loss.
     # Only relevant with internal randomness in the model, e.g. with dropout.
@@ -148,6 +143,7 @@ class RandomizationConfig:
 
 
 class Reproducible(object):
+    """Sets the configuration values to be reproduced from the RandomContext."""
     def __init__(self, config: Dict) -> None:
         self.data_random = RandomContext(
             config["data_seed"])
