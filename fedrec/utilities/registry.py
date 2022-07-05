@@ -146,23 +146,23 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
 def instantiate(callable, config, unused_keys=(), **kwargs):
     """
-    It instantiates an object after verifying its parameters.
+    Instantiates an object after verifying its parameters.
 
     Arguments
     ----------
-    callable: object
-              Definition of object to be instantiated.
+    callable
+        Definition of object to be instantiated.
     config: dict
-            Arguments to construct the object.
+        Arguments to construct the object.
     unused_keys: tuple
-                 Keys for values that are not passed as arguments to
-                 insantiate the object but are still present in config.
+        Keys for values that are not passed as arguments to
+        insantiate the object but are still present in config.
     **kwargs: dict, optional
-              Variable keyword arguments to pass.
+        Variable keyword arguments to pass.
 
     Returns
     ----------
-    callable: object
+    callable
         Instantiated object by the parameters passed in config and \**kwargs.
 
     Examples
@@ -209,19 +209,18 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
 
 class Registrable(object):
     """
-    Registers new objects and annotated classes.
+    Registers and checks for new class objects.
 
     Methods
     ----------
     type_name()
-        returns new Reproducible method by name.
+        returns a new Registrable class method by name.
     get_name()
-        returns new Reproducible object by name.
+        returns a new Registrable class object by name.
     register_class_ref()
-        adds newly annotated objects to the registry.
-
+        adds Registrable class objects to the registry.
     lookup_class_ref()
-        checks for the annotated class objects.
+        checks for annotated class objects.
 
     """
 
