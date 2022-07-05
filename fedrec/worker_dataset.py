@@ -3,7 +3,7 @@ from collections import defaultdict
 
 class WorkerDataset:
     """
-    It represents a worker dataset and includes methods
+    It represents a dataset of workers and includes methods
     for adding and loading federated workers.
 
     The WorkerDataset class also allows for the retrieval

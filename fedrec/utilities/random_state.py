@@ -126,7 +126,7 @@ class RandomContext:
 @attr.s
 class RandomizationConfig:
     """Sets the seed values that the RNGs will use for randomizing the
-    training data, model initialization, and model computation."""
+    training data, model initialization, or model computation."""
     data_seed = attr.ib(default=None)
     init_seed = attr.ib(default=None)
     # Seed for RNG used in computing the model's training loss.
@@ -135,8 +135,7 @@ class RandomizationConfig:
 
 
 class Reproducible(object):
-    """Sets the configuration values to be reproduced from the
-    RandomContext."""
+    """Reproduces the configuration values."""
     def __init__(self, config: Dict) -> None:
         self.data_random = RandomContext(
             config["data_seed"])

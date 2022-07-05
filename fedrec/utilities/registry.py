@@ -162,7 +162,7 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
 
     Returns
     ----------
-    callable
+    object
         Instantiated object by the parameters passed in config and \**kwargs.
 
     Examples
