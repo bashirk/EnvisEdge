@@ -18,6 +18,7 @@ class ArgsDict(dict):
     Argument
     ----------
     **kwargs:
+        variable keyword arguments for the ArgsDict class.
 
     """
 
