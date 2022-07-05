@@ -143,7 +143,8 @@ class RandomizationConfig:
 
 
 class Reproducible(object):
-    """Sets the configuration values to be reproduced from the RandomContext."""
+    """Sets the configuration values to be reproduced from the
+    RandomContext."""
     def __init__(self, config: Dict) -> None:
         self.data_random = RandomContext(
             config["data_seed"])
