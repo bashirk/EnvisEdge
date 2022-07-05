@@ -57,8 +57,9 @@ class RandomContext:
     The context of the random state that saves the current state of the
     RNGs and restores that saved state.
     
-    It sets the state for the RNGs by using a random integer seed
-    value, then proceeds to save and restore the state for the RNGs.
+    It uses the object methods of the random, numpy, and torch modules
+    to set the state for the RNGs by using a seed value and then proceeds
+    to save and restore the state for the RNGs.
     
     ...
 
@@ -91,20 +92,16 @@ class RandomContext:
     """
 
     def __init__(self, seed=None):
+        """Makes the RNGs reproducible by setting the seed values for the
+        random, numpy, and torch modules."""
         outside_state = RandomState()
 
-        #initialize the random number generator and make it reproducible
         random.seed(seed)
-        #make the random number generator for the numpy module reproducible,
-        # by setting the seed value
         np.random.seed(seed)
-        #initialize the random number generator (RNG) for the torch module,
-        # sith the seed value being a random integer
         if seed is None:
             torch.manual_seed(random.randint(-sys.maxsize - 1, sys.maxsize))
         else:
             torch.manual_seed(seed)
-        # torch.cuda.manual_seed_all is called by torch.manual_seed
         self.inside_state = RandomState()
 
         outside_state.restore()
@@ -114,17 +111,12 @@ class RandomContext:
     def __enter__(self):
         if self._active:
             raise Exception('RandomContext can be active only once')
-
-        # Save current state of RNG
         self.outside_state = RandomState()
-        # Restore saved state of RNG for this context
         self.inside_state.restore()
         self._active = True
 
     def __exit__(self, exception_type, exception_value, traceback):
-        # Save current state of RNG
         self.inside_state = RandomState()
-        # Restore state of RNG saved in __enter__
         self.outside_state.restore()
         self.outside_state = None
 
