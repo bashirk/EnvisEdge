@@ -82,7 +82,10 @@ def save_checkpoint(model,
                     ignore=[],
                     keep_every_n=10000000):
     """creates a directory for the model checkpoint, saves the checkpoints
-    for model and optimizer, and also saves the epoch and step"""
+    for model and optimizer, and also saves the epoch and step.
+    
+    It stores all checkpoints for the traversal of these checkpoints, then
+    deletes the file path at each of the checkpoints."""
 
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
