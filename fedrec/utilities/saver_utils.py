@@ -154,7 +154,8 @@ class Saver(object):
     Methods
     -------
     restore()
-        restores model and optimizer checkpoints from the given model directory.
+        restores model and optimizer checkpoints from the given model
+        directory.
     save()
         saves model and optimizer checkpoints to the given model directory.
     restore_part()
