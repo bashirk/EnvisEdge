@@ -82,10 +82,10 @@ def save_checkpoint(model,
                     ignore=[],
                     keep_every_n=10000000):
     """creates a directory for the model checkpoint, saves the checkpoints
-    for model and optimizer, and also saves the epoch and step.
+    for model and optimizer, and also saves the current training step.
     
     It stores all checkpoints for the traversal of these checkpoints, then
-    deletes the file path at each of the checkpoints."""
+    deletes the file path at each checkpoint."""
 
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
@@ -127,7 +127,41 @@ def save_checkpoint(model,
 
 
 class Saver(object):
-    """It manages save and restore for the model and optimizer."""
+    """
+    Manages save and restore for the model and optimizer checkpoints.
+
+    ...
+
+    Arguments
+    ----------
+    model: Any
+        model checkpoint to be saved.
+    optimizer: Any
+        optimizer checkpoint to be saved.
+    keep_every_n: optional
+        upper bound value needed to get the highest checkpoint step.
+        Default is None.
+
+    Attributes
+    ----------
+    _model
+        stores the model checkpoint.
+    _optimizer
+        stores the model checkpoint.
+    _keep_every_n
+        stores the upper bound value.
+
+    Methods
+    -------
+    restore()
+        restores model and optimizer checkpoints from the given model directory.
+    save()
+        saves model and optimizer checkpoints to the given model directory.
+    restore_part()
+        stores part of the model from other model directory.
+        Useful to initialize part of the model with another pretrained model.
+
+    """
 
     def __init__(self, model, optimizer, keep_every_n=None):
         self._model = model
@@ -135,11 +169,6 @@ class Saver(object):
         self._keep_every_n = keep_every_n
 
     def restore(self, model_dir=None, map_location=None, step=None):
-        """Restores model and optimizer from given directory.
-
-        Returns
-           Last training step for the model restored.
-        """
         if model_dir is None:
             return 0, 0
         last_step, epoch = load_checkpoint(
@@ -147,21 +176,10 @@ class Saver(object):
         return last_step, epoch
 
     def save(self, model_dir, step, epoch, is_best=False):
-        """Saves model and optimizer to given directory.
-        Args:
-           model_dir: Model directory to save. If None ignore.
-           step: Current training step.
-        """
         if model_dir is None:
             return
         save_checkpoint(self._model, self._optimizer, step, epoch, model_dir,
                         keep_every_n=self._keep_every_n, is_best=is_best)
 
     def restore_part(self, other_model_dir, remap):
-        """Restores part of the model from other directory.
-        Useful to initialize part of the model with another pretrained model.
-        Args:
-            other_model_dir: Model directory to load from.
-            remap: dict, remapping current parameters to the other model's.
-        """
         load_and_map_checkpoint(self._model, other_model_dir, remap)
