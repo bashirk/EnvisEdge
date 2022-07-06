@@ -45,7 +45,9 @@ def load_checkpoint(model,
                     model_dir,
                     map_location=None,
                     step=None):
-    """It loads the model and the optimizer checkpoints."""
+    """It loads the model and the optimizer checkpoints from the
+    given model directory if it exists, and if the path to the model
+    directory doesn't exist, it returns without errors."""
 
     path = os.path.join(model_dir, 'model_checkpoint')
     if step is not None:
