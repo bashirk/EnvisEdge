@@ -30,7 +30,7 @@ class ArgsDict(dict):
 
 
 def create_link(original, link_name):
-    """It links two paths symbolically if there is no link already."""
+    """This function links two paths symbolically if there is no link already."""
     
     if os.path.islink(link_name):
         os.unlink(link_name)

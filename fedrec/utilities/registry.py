@@ -24,7 +24,7 @@ LOOKUP_DICT = collections.defaultdict(dict)
 
 def load(kind, name):
     """
-    It is a decorator to record callable object definitions
+    This function is a decorator to record callable object definitions
     for models, trainers, workers etc.
 
     Arguments
@@ -64,7 +64,7 @@ def load(kind, name):
 
 def lookup(kind, name):
     """
-    It returns the object definition stored in registry.
+    This function returns the object definition stored in registry.
 
     Arguments
     ----------
@@ -102,7 +102,7 @@ def lookup(kind, name):
 
 def construct(kind, config, unused_keys=(), **kwargs):
     """
-    It returns an object instance by loading the definition from the
+    This function returns an object instance by loading the definition from the
     registry, and arguments from the configuration file.
 
     Arguments
@@ -146,7 +146,7 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
 def instantiate(callable, config, unused_keys=(), **kwargs):
     """
-    Instantiates an object after verifying its parameters.
+    This function instantiates an object after verifying its parameters.
 
     Arguments
     ----------
@@ -209,7 +209,7 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
 
 class Registrable(object):
     """
-    Registers and checks for new class objects.
+    This class registers and checks for new class objects.
 
     Methods
     ----------
