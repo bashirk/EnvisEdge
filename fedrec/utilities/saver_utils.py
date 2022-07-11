@@ -45,9 +45,9 @@ def load_checkpoint(model,
                     model_dir,
                     map_location=None,
                     step=None):
-    """It loads the model and the optimizer checkpoints from the
+    """This function loads the model and the optimizer checkpoints from the
     given model directory if it exists, and if the path to the model
-    directory doesn't exist, it returns without errors."""
+    directory does not exist, it returns without errors."""
 
     path = os.path.join(model_dir, 'model_checkpoint')
     if step is not None:
@@ -62,7 +62,7 @@ def load_checkpoint(model,
 
 
 def load_and_map_checkpoint(model, model_dir, remap):
-    """It loads the model and the optimizer checkpoints, then
+    """This function loads the model and the optimizer checkpoints, then
     maps the state dictionaries."""
 
     path = os.path.join(model_dir, 'model_checkpoint')
@@ -83,7 +83,7 @@ def save_checkpoint(model,
                     is_best,
                     ignore=[],
                     keep_every_n=10000000):
-    """creates a directory for the model checkpoint, saves the checkpoints
+    """This function creates a directory for the model checkpoint, saves the checkpoints
     for model and optimizer, and also saves the current training step.
     
     It stores all checkpoints for the traversal of these checkpoints, then
@@ -130,7 +130,7 @@ def save_checkpoint(model,
 
 class Saver(object):
     """
-    Manages save and restore for the model and optimizer checkpoints.
+    This class manages save and restore for the model and optimizer checkpoints.
 
     ...
 
@@ -149,7 +149,7 @@ class Saver(object):
     _model
         stores the model checkpoint.
     _optimizer
-        stores the model checkpoint.
+        stores the optimizer checkpoint.
     _keep_every_n
         stores the upper bound value.
 
