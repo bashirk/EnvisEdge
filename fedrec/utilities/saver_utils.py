@@ -30,7 +30,8 @@ class ArgsDict(dict):
 
 
 def create_link(original, link_name):
-    """This function links two paths symbolically if there is no link already."""
+    """This function links two paths symbolically if there is no link
+    already."""
     
     if os.path.islink(link_name):
         os.unlink(link_name)
@@ -83,8 +84,8 @@ def save_checkpoint(model,
                     is_best,
                     ignore=[],
                     keep_every_n=10000000):
-    """This function creates a directory for the model checkpoint, saves the checkpoints
-    for model and optimizer, and also saves the current training step.
+    """This function creates a directory for the model checkpoint, saves
+    the checkpoints for model and optimizer, and also saves the current training step.
     
     It stores all checkpoints for the traversal of these checkpoints, then
     deletes the file path at each checkpoint."""
@@ -130,7 +131,8 @@ def save_checkpoint(model,
 
 class Saver(object):
     """
-    This class manages save and restore for the model and optimizer checkpoints.
+    This class manages save and restore for the model and optimizer
+    checkpoints.
 
     ...
 

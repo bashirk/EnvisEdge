@@ -8,7 +8,8 @@ import torch
 
 class RandomState:
     """
-    RandomState sets random values using the random, NumPy, and PyTorch modules.
+    RandomState sets random values using the random, NumPy, and PyTorch
+    modules.
 
     It returns the current internal state of the Random Number
     Generators (RNGs) of the random, NumPy, and PyTorch modules.
@@ -53,8 +54,8 @@ class RandomState:
 
 class RandomContext:
     """
-    RandomContext makes the RNGs reproducible by setting the seed values for the random,
-    numpy, and torch modules
+    RandomContext makes the RNGs reproducible by setting the seed values
+    for the random, numpy, and torch modules
     
     It uses the object methods of the random, numpy, and torch modules
     to set the state for the RNGs by using a seed value and then proceeds
@@ -122,8 +123,8 @@ class RandomContext:
 
 @attr.s
 class RandomizationConfig:
-    """RandomizationConfig sets the seed values that the RNGs will use for randomizing the
-    training data, model initialization, or model computation."""
+    """RandomizationConfig sets the seed values that the RNGs will use for
+    randomizing the training data, model initialization, or model computation."""
     data_seed = attr.ib(default=None)
     init_seed = attr.ib(default=None)
     # Seed for RNG used in computing the model's training loss.
