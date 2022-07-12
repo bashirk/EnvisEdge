@@ -19,9 +19,9 @@ class RandomState:
     Attributes
     ----------
     random_mod_state: object
-        the current state of the generator
+        the current state of the generator.
     np_state: tuple
-        the current state of the internal generator
+        the current state of the internal generator..
     torch_cpu_state: tuple
         the state of the random number state generator of the CPU
     torch_gpu_states: list
@@ -32,7 +32,6 @@ class RandomState:
     -------
     restore()
         sets and restores the state for Numpy, Torch, & Torch RNGs
-    
     """
 
     def __init__(self):
@@ -88,7 +87,6 @@ class RandomContext:
         makes the RandomContext inactive. It also includes parameters
         that describe exceptions that will cause the exit of the
         RandomContext.
-    
     """
 
     def __init__(self, seed=None):
@@ -127,7 +125,6 @@ class RandomizationConfig:
     RandomizationConfig sets the seed values that the RNGs will use for
     randomizing the training data, model initialization, or model
     computation.
-    
     """
     data_seed = attr.ib(default=None)
     init_seed = attr.ib(default=None)
@@ -141,7 +138,6 @@ class Reproducible(object):
     This class reproduces the random values that the RNGs will use
     for randomizing the training data, model initialization, or model
     computation.
-    
     ...
 
     Argument
@@ -154,7 +150,6 @@ class Reproducible(object):
     -------
     __init__()
         Initializes the Reproducible class.
-
     """
     def __init__(self, config: Dict) -> None:
         self.data_random = RandomContext(

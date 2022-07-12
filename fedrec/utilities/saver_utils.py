@@ -11,13 +11,21 @@ CHECKPOINT_PATTERN = re.compile('^model_checkpoint-(\d+)$')
 
 class ArgsDict(dict):
     """
-    The ArgsDict class creates dictionaries from its input arguments.
-    ...
+    The ArgsDict class creates dictionaries from its input arguments. It
+    is used to create a dictionary of arguments for the model, trainer, etc.
+    from a configuration file. The dictionary is then used to initialize the
+    model, trainer, etc.
+    
+    The dictionary is created from the input arguments in the order they are
+    passed to the function. The dictionary is then converted to a dictionary
+    of arguments for the model, trainer, etc. by using the __dict__ attribute
+    of the ArgsDict class. This is done to avoid the use of the __dict__
+    attribute of the dictionary class.
+
     Argument
     ----------
     **kwargs:
         variable keyword arguments for the ArgsDict class.
-
     """
 
     def __init__(self, **kwargs):
@@ -28,9 +36,12 @@ class ArgsDict(dict):
 
 
 def create_link(original, link_name):
-    """This function links two paths symbolically if there is no link
-    already."""
-    
+    """
+    This function creates a symbolic link to the original file.
+    If the link already exists, it deletes it and creates a new
+    one. This is useful for keeping the latest checkpoint.
+    """
+
     if os.path.islink(link_name):
         os.unlink(link_name)
     try:
@@ -44,9 +55,22 @@ def load_checkpoint(model,
                     model_dir,
                     map_location=None,
                     step=None):
-    """This function loads the model and the optimizer checkpoints from the
-    given model directory if it exists, and if the path to the model
-    directory does not exist, it returns without errors."""
+    """
+    This function loads the model and the optimizer checkpoints from the
+    given model directory if it exists, and if the path to the model directory
+    does not exist, it returns without errors.
+    
+    This is useful for loading the model from a checkpoint when the model
+    directory does not exist. It also loads the current training step.
+
+    Arguments
+    ----------
+    map_location: str, optional
+        Location for the model and optimizer to be loaded from.
+    step: int, optional
+        Step to load the checkpoint from. If None, the latest checkpoint
+        is loaded.
+    """
 
     path = os.path.join(model_dir, 'model_checkpoint')
     if step is not None:
@@ -61,8 +85,14 @@ def load_checkpoint(model,
 
 
 def load_and_map_checkpoint(model, model_dir, remap):
-    """This function loads the model and the optimizer checkpoints, then
-    maps the state dictionaries."""
+    """
+    This function loads the model and the optimizer checkpoints from the
+    given model directory, then maps the state dictionaries.
+    
+    It filters out unnecessary keys from state_dict, overwrites entries
+    in the existing state_dict, and maps the state_dict before loading
+    the new state_dict.
+    """
 
     path = os.path.join(model_dir, 'model_checkpoint')
     print("Loading parameters %s from %s" % (remap.keys(), model_dir))
@@ -82,12 +112,15 @@ def save_checkpoint(model,
                     is_best,
                     ignore=[],
                     keep_every_n=10000000):
-    """This function creates a directory for the model checkpoint, saves the
-    checkpoints for model and optimizer, and also saves the current training
-    step.
-    
-    It stores all checkpoints for the traversal of these checkpoints, then
-    deletes the file path at each checkpoint."""
+    """
+    This function saves the model and the optimizer checkpoints to the
+    given model directory. It also saves the current training step and
+    epoch, also creates a symbolic link to the latest checkpoint.
+
+    It also stores all checkpoints for the traversal of these checkpoints,
+    then deletes the oldest checkpoint if the number of checkpoints exceeds
+    the keep_every_n. This is useful for keeping the latest checkpoint.
+    """
 
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
@@ -131,8 +164,15 @@ def save_checkpoint(model,
 class Saver(object):
     """
     This class manages save and restore for the model and optimizer
-    checkpoints.
-
+    checkpoints. It saves the model and optimizer checkpoints
+    during training and loads the model and optimizer checkpoints
+    during testing.
+    
+    It also manages the creation of the model and optimizer checkpoints
+    for training, creates a directory for the model checkpoint,
+    saves the checkpoints for model and optimizer, and also saves the
+    current training step. Additionally, it creates a symbolic link to the
+    latest checkpoint, and also to the best checkpoint.
     ...
 
     Arguments
@@ -164,7 +204,6 @@ class Saver(object):
     restore_part()
         stores part of the model from other model directory.
         Useful to initialize part of the model with another pretrained model.
-
     """
 
     def __init__(self, model, optimizer, keep_every_n=None):
