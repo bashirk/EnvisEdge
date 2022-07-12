@@ -117,9 +117,10 @@ def save_checkpoint(model,
     given model directory. It also saves the current training step and
     epoch, also creates a symbolic link to the latest checkpoint.
 
-    It also stores all checkpoints for the traversal of these checkpoints,
-    then deletes the oldest checkpoint if the number of checkpoints exceeds
-    the keep_every_n. This is useful for keeping the latest checkpoint.
+    Additionally, it stores all checkpoints for the traversal of these
+    checkpoints, then deletes the oldest checkpoint if the number of
+    checkpoints exceeds the keep_every_n. This is useful for keeping
+    the latest checkpoint.
     """
 
     if not os.path.exists(model_dir):

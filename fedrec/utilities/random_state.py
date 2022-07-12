@@ -21,7 +21,7 @@ class RandomState:
     random_mod_state: object
         the current state of the generator.
     np_state: tuple
-        the current state of the internal generator..
+        the current state of the internal generator.
     torch_cpu_state: tuple
         the state of the random number state generator of the CPU
     torch_gpu_states: list

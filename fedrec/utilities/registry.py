@@ -112,25 +112,34 @@ def lookup(kind, name):
 
 def construct(kind, config, unused_keys=(), **kwargs):
     """
-    This function returns an object instance by loading the definition from the
-    registry, and arguments from the configuration file.
+    This function constructs an object after verifying its parameters. It
+    is similar to instantiate except that it does not instantiate the
+    object. It just constructs the object.
+
+    It is used to construct the object definition from the configuration file.
 
     Arguments
     ----------
     kind: str
-          Key to search in dictionary of registry.
+            Key to search in dictionary of registry.
     config: dict
-            Configuration dictionary loaded from YAML file
-    unused_keys: tuple
-                 Keys for values that are not passed as arguments to
-                 insantiate the object but are still present in config
-    **kwargs: dict, optional
-              Extra arguments to pass.
+            Dictionary of arguments to construct the object.
+    unused_keys: list
+            List of keys in the configuration file that are not
+            used in the object definition. These keys are ignored.
+    kwargs: dict (optional)
+            Keyword arguments to construct the object. These keyword
+            arguments are ignored. This is useful if the object definition
+            has some default arguments. For example, if the object definition
+            has a default argument of 'num_classes', then the object can be
+            constructed by passing the keyword argument 'num_classes' to the
+            function.
 
     Returns
     ----------
-    object
-        Constructed object using the parameters passed in config and \**kwargs.
+    object (optional)
+            Object definition stored in registry under key kind and sub-key
+            name. If the object definition is not valid, it raises an error.
 
     Examples
     ----------
@@ -157,24 +166,32 @@ def construct(kind, config, unused_keys=(), **kwargs):
 def instantiate(callable, config, unused_keys=(), **kwargs):
     """
     This function instantiates an object after verifying its parameters.
+    It is similar to construct except that it instantiates the object. It
+    is used to instantiate the object definition from the configuration file.
 
     Arguments
     ----------
-    callable
-        Definition of object to be instantiated.
+    callable: object
+            Object definition stored in registry under key kind and sub-key
+            name. If the object definition is not valid, it raises an error.
     config: dict
-        Arguments to construct the object.
-    unused_keys: tuple
-        Keys for values that are not passed as arguments to
-        insantiate the object but are still present in config.
-    **kwargs: dict, optional
-        Variable keyword arguments to pass.
-
+            Dictionary of arguments to construct the object. It is used to
+            instantiate the object. It is also used to verify the validity
+            of the object definition.
+    unused_keys: list
+            List of keys in the configuration file that are not used in the
+            object definition. These keys are ignored. This is useful if the
+            object definition has some default arguments.
+    kwargs: dict (optional)
+            Keyword arguments to construct the object. These keyword arguments
+            are ignored. This is useful if the object definition has some
+            default arguments.
+    
     Returns
     ----------
-    object:
-        Instantiated object by the parameters passed in config and \**kwargs.
-
+    object (optional)
+            Instantiated object by the parameters passed in config and \**kwargs.
+    
     Examples
     ----------
     >>> @registry.load('model', 'dlrm')
@@ -219,10 +236,15 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
 
 class Registrable(object):
     """
-    This class registers and checks for new class objects.
+    This class is used to register an object definition in the registry, and check for new
+    class objects. The object definition is stored in the registry under
+    the key 'kind' and sub-key 'name' in the dictionary.
+    
+    The object definition is a dictionary that contains the class object and the arguments that
+    are used to construct the object.
 
     Methods
-    ----------
+    ----------   
     type_name()
         returns a new Registrable class method by name.
     get_name()
