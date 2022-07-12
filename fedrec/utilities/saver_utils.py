@@ -85,7 +85,8 @@ def save_checkpoint(model,
                     ignore=[],
                     keep_every_n=10000000):
     """This function creates a directory for the model checkpoint, saves the
-    checkpoints for model and optimizer, and also saves the current training step.
+    checkpoints for model and optimizer, and also saves the current training
+    step.
     
     It stores all checkpoints for the traversal of these checkpoints, then
     deletes the file path at each checkpoint."""
