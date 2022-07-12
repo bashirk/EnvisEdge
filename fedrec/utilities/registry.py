@@ -127,7 +127,7 @@ def construct(kind, config, unused_keys=(), **kwargs):
     unused_keys: list
             List of keys in the configuration file that are not
             used in the object definition. These keys are ignored.
-    kwargs: dict (optional)
+    kwargs: dict
             Keyword arguments to construct the object. These keyword
             arguments are ignored. This is useful if the object definition
             has some default arguments. For example, if the object definition
@@ -137,7 +137,7 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
     Returns
     ----------
-    object (optional)
+    object
             Object definition stored in registry under key kind and sub-key
             name. If the object definition is not valid, it raises an error.
 
@@ -246,13 +246,13 @@ class Registrable(object):
     Methods
     ----------   
     type_name()
-        returns a new Registrable class method by name.
+        Returns the type name of the object. This is used to identify the object in the registry.
     get_name()
-        returns a new Registrable class object by name.
+        Returns the name of the object. This is used to identify the object in the registry.
     register_class_ref()
-        adds Registrable class objects to the registry.
+        Registers the class object in the registry.
     lookup_class_ref()
-        checks for annotated class objects.
+        Returns the class object from the registry. This is used to instantiate the object.
 
     """
 

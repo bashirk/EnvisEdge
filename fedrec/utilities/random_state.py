@@ -19,13 +19,13 @@ class RandomState:
     Attributes
     ----------
     random_mod_state: object
-        the current state of the generator.
+        The current state of the generator.
     np_state: tuple
-        the current state of the internal generator.
+        The current state of the internal generator.
     torch_cpu_state: tuple
-        the state of the random number state generator of the CPU
+        The state of the random number state generator of the CPU
     torch_gpu_states: list
-        list containing the state of the random number state generator
+        List containing the state of the random number state generator
         of the GPU for each device.
 
     Method
@@ -72,19 +72,19 @@ class RandomContext:
     Attributes
     ----------
     outside_state: array
-        sets the state of the generator.
+        Sets the state of the generator.
     inside_state: array
-        sets the state of the internal generator.
+        Sets the state of the internal generator.
     _active: bool
-        sets the active state of the RandomContext to False.
+        Sets the active state of the RandomContext to False.
 
     Methods
     -------
     __enter__()
-        ensures the RandomContext is active if it is inactive, such that
+        Ensures the RandomContext is active if it is inactive, such that
         the values are set only once.
     __exit__()
-        makes the RandomContext inactive. It also includes parameters
+        Makes the RandomContext inactive. It also includes parameters
         that describe exceptions that will cause the exit of the
         RandomContext.
     """
