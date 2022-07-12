@@ -124,7 +124,8 @@ class RandomContext:
 @attr.s
 class RandomizationConfig:
     """RandomizationConfig sets the seed values that the RNGs will use for
-    randomizing the training data, model initialization, or model computation."""
+    randomizing the training data, model initialization, or model
+    computation."""
     data_seed = attr.ib(default=None)
     init_seed = attr.ib(default=None)
     # Seed for RNG used in computing the model's training loss.
