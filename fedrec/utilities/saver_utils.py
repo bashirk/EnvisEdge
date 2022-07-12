@@ -12,9 +12,7 @@ CHECKPOINT_PATTERN = re.compile('^model_checkpoint-(\d+)$')
 class ArgsDict(dict):
     """
     The ArgsDict class creates dictionaries from its input arguments.
-
     ...
-
     Argument
     ----------
     **kwargs:
