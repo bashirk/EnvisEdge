@@ -7,7 +7,8 @@ class WorkerDataset:
     for adding and loading federated workers.
 
     The WorkerDataset class also allows for the retrieval
-    of workers based on their role IDs.
+    of workers based on their role IDs. This is useful for the
+    distributed training process.
     ...
 
     Attributes
