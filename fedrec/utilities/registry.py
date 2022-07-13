@@ -245,7 +245,7 @@ class Registrable(object):
     and the arguments that are used to construct the object.
 
     Methods
-    ----------   
+    -----------
     type_name()
         Returns the type name of the object. This is used to identify the
         object in the registry.
