@@ -25,7 +25,7 @@ class ArgsDict(dict):
     Argument
     ----------
     **kwargs:
-        variable keyword arguments for the ArgsDict class.
+        Variable keyword arguments for the ArgsDict class.
     """
 
     def __init__(self, **kwargs):
@@ -179,32 +179,33 @@ class Saver(object):
     Arguments
     ----------
     model: Any
-        model checkpoint to be saved.
+        The model checkpoint to be saved.
     optimizer: Any
-        optimizer checkpoint to be saved.
-    keep_every_n: optional
-        upper bound value needed to get the highest checkpoint step.
-        Default is None.
+        The optimizer checkpoint to be saved.
+    keep_every_n: int, optional (default=10000000)
+        The number of checkpoints to keep. If None, all checkpoints are kept.
 
     Attributes
     ----------
-    _model
-        stores the model checkpoint.
-    _optimizer
-        stores the optimizer checkpoint.
-    _keep_every_n
-        stores the upper bound value.
+    _model: Any
+        Stores the model checkpoint.
+    _optimizer: Any
+        Stores the optimizer checkpoint.
+    _keep_every_n: int (default=10000000)
+        Stores the upper bound value.
 
     Methods
     -------
     restore()
-        restores model and optimizer checkpoints from the given model
-        directory.
+        This method restores the model and optimizer checkpoints from
+        the given model directory.
     save()
-        saves model and optimizer checkpoints to the given model directory.
+        This method saves the model and optimizer checkpoints to the
+        given model directory.
     restore_part()
-        stores part of the model from other model directory.
-        Useful to initialize part of the model with another pretrained model.
+        This method restores the model and optimizer checkpoints from
+        the given model directory. Useful to initialize part of the model
+        with another pretrained model.
     """
 
     def __init__(self, model, optimizer, keep_every_n=None):

@@ -13,23 +13,24 @@ class WorkerDataset:
 
     Attributes
     ----------
-    _workers: dict
-        dict to store federated workers
+    workers: dict
+        Dictionary of workers. The key is the worker ID and the
+        value is the worker object.
     workers_by_types: dict
-        dict of all federated worker types
-    _len: int
-        length of the federated workers dataset
+        Dictionary of lists of workers. The key is the role ID and
+        the value is a list of worker IDs.
+    len: int
+        Number of federated workers in the dataset.
 
     Methods
     -------
     add_worker()
-        method to create new federated workers.
+        Method to create new federated workers.
     get_worker()
-        method to invoke a federated worker using the worker ID.
+        Method to get a federated worker based on its ID.
     get_workers_by_roles()
-        method to invoke federated workers based on their roles,
-        using worker IDs.
-    
+        Method to get a list of federated workers based on their
+        role IDs. 
     """
 
     def __init__(self) -> None:
