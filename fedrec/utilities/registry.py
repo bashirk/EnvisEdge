@@ -189,8 +189,9 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
     
     Returns
     ----------
-    object (optional)
-            Instantiated object by the parameters passed in config and \**kwargs.
+    object
+            Instantiated object by the parameters passed in config and
+            \**kwargs.
     
     Examples
     ----------
@@ -236,23 +237,26 @@ def instantiate(callable, config, unused_keys=(), **kwargs):
 
 class Registrable(object):
     """
-    This class is used to register an object definition in the registry, and check for new
-    class objects. The object definition is stored in the registry under
-    the key 'kind' and sub-key 'name' in the dictionary.
+    This class is used to register an object definition in the registry,
+    and check for new class objects. The object definition is stored in
+    the registry under the key 'kind' and sub-key 'name' in the dictionary.
     
-    The object definition is a dictionary that contains the class object and the arguments that
-    are used to construct the object.
+    The object definition is a dictionary that contains the class object
+    and the arguments that are used to construct the object.
 
     Methods
     ----------   
     type_name()
-        Returns the type name of the object. This is used to identify the object in the registry.
+        Returns the type name of the object. This is used to identify the
+        object in the registry.
     get_name()
-        Returns the name of the object. This is used to identify the object in the registry.
+        Returns the name of the object. This is used to identify the object
+        in the registry.
     register_class_ref()
         Registers the class object in the registry.
     lookup_class_ref()
-        Returns the class object from the registry. This is used to instantiate the object.
+        Returns the class object from the registry. This is used to instantiate
+        the object.
 
     """
 
