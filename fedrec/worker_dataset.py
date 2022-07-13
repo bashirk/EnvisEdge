@@ -30,7 +30,7 @@ class WorkerDataset:
         Method to get a federated worker based on its ID.
     get_workers_by_roles()
         Method to get a list of federated workers based on their
-        role IDs. 
+        role IDs.
     """
 
     def __init__(self) -> None:
