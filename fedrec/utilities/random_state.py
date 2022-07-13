@@ -31,7 +31,7 @@ class RandomState:
     Method
     -------
     restore()
-        sets and restores the state for Numpy, Torch, & Torch RNGs
+        Sets and restores the state for Numpy, Torch, & Torch RNGs
     """
 
     def __init__(self):
