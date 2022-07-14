@@ -10,6 +10,10 @@ from fedrec.utilities import registry
 
 class ProcessManager(ABC):
     """
+    This class is used to manage the child processes. It is used to start,
+    shutdown and check the status of the child processes for executing the
+    job.
+
     A ProcessManager is a class that manages the processes that are spawned
     for multiprocessing.
     """
