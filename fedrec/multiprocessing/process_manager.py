@@ -16,6 +16,22 @@ class ProcessManager(ABC):
 
     A ProcessManager is a class that manages the processes that are spawned
     for multiprocessing.
+
+    Attributes
+    -----------
+    workers: dict
+        Dictionary that contains the workers.
+    
+    Methods
+    -----------
+    start()
+        Initialize the child processes for executing the job.
+    shutdown()
+        Shutdown the child processes for executing the job.
+    is_alive()
+        Check if the process is alive.
+    get_status()
+        Get the results of the child processes.
     """
 
     def __init__(self) -> None:
@@ -52,6 +68,15 @@ class ProcessManager(ABC):
 
 @registry.load("process_manager", "ray")
 class RayProcessManager(ProcessManager):
+    """
+    The RayProcessManager class is a class that manages the processes that are
+    spawned for multiprocessing. Like the ProcessManager class, it is used to
+    start, shutdown and check the status of the child processes for executing
+    the job.
+
+    The registry is used to automatically load the RayProcessManager class
+    when the ray module is imported, through the registry.load() decorator.
+    """
 
     def __init__(self) -> None:
         super().__init__()
