@@ -69,10 +69,10 @@ class ProcessManager(ABC):
 @registry.load("process_manager", "ray")
 class RayProcessManager(ProcessManager):
     """
-    The RayProcessManager class is a class that manages the processes that are
-    spawned for multiprocessing. Like the ProcessManager class, it is used to
-    start, shutdown and check the status of the child processes for executing
-    the job.
+    The RayProcessManager class manages the processes that are spawned
+    for multiprocessing. Like the ProcessManager class, it is used to
+    start, shutdown and check the status of the child processes for
+    executing the job.
 
     The registry is used to automatically load the RayProcessManager class
     when the ray module is imported, through the registry.load() decorator.
