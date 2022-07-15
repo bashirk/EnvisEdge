@@ -33,6 +33,11 @@ class JSONSerialization(SerializationStrategy):
     This class is used to serialize and deserialize objects. It is used by the
     Serializable class to serialize and deserialize objects to and from json.
     
+    The registry is used to register the serialization strategy with the
+    Serializable class. The Serializable class uses the registry to find the
+    appropriate serialization strategy for the object being serialized and
+    deserialized respectively.
+
     Attributes
     ----------
     serializer: str
