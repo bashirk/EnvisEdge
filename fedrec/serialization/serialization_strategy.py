@@ -5,6 +5,18 @@ from fedrec.utilities import registry
 
 
 class SerializationStrategy(registry.Registrable, ABC):
+    """"
+    This class is an abstract class for serialization strategies. It inherits
+    from the Registrable class to allow for registration of serialization
+    strategies.
+    
+    Methods
+    --------
+    parse(obj):
+        Parses an object into a dictionary.
+    unparse(obj):
+        Unparses a dictionary into an object.
+    """
 
     @abstractmethod
     def parse(self, obj):
