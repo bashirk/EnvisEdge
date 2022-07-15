@@ -29,8 +29,10 @@ class SerializationStrategy(registry.Registrable, ABC):
 
 @registry.load("serialization", "json")
 class JSONSerialization(SerializationStrategy):
-    """Uses json serialization strategy for objects.
-
+    """
+    This class is used to serialize and deserialize objects. It is used by the
+    Serializable class to serialize and deserialize objects to and from json.
+    
     Attributes
     ----------
     serializer: str
