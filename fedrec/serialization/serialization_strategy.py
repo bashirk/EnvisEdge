@@ -42,6 +42,13 @@ class JSONSerialization(SerializationStrategy):
     ----------
     serializer: str
         The serializer to use.
+
+    Methods
+    --------
+    parse(obj):
+        Serializes an object to json.
+    unparse(obj):
+        Deserializes an object from json.
     """
 
     def parse(self, obj):
