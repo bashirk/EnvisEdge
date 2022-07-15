@@ -6,12 +6,30 @@ from fedrec.utilities.registry import Registrable
 
 
 def get_deserializer(serialized_obj_name):
+    """
+    This function returns the deserializer for the given object name in the
+    registry.
+    """
     # find the deserializer from registry
     # given object name.
     return Registrable.lookup_class_ref(serialized_obj_name)
 
 
 def serialize_attribute(obj):
+    """
+    This function serializes the given object and returns the serialized
+    object. It uses the serializer registry to find the appropriate serializer.
+    
+    Parameters
+    ----------
+    obj: object
+        The object to serialize.
+    
+    Returns
+    -------
+    object
+        The serialized object.
+    """
     # TODO : make a single global function
     # for this method.
     ## location : [envis_base_module.py]
