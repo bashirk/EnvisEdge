@@ -52,28 +52,7 @@ class JSONSerialization(SerializationStrategy):
     """
 
     def parse(self, obj):
-        """Serializes a python object to json.
-
-        Parameters
-        -----------
-        obj: object
-            The object to serialize.
-        Returns
-        --------
-        str
-        """
         return loads(obj)
 
     def unparse(self, obj):
-        """Deserializes the json object to python object
-         as per the `type` mentioned in the json dictionary.
-
-        Parameters
-        -----------
-        obj: object
-            The object to deserialize.
-        Returns
-        --------
-        object
-        """
         return dumps(obj, indent=4)
