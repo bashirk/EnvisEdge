@@ -7,7 +7,10 @@ from torch import Tensor
 
 
 class _RequiredParameter(object):
-    """Singleton class representing a required parameter for an Optimizer."""
+    """
+    This class is a singleton class that is used to indicate that a parameter is required for the
+    optimizer to be instantiated.
+    """
 
     def __repr__(self):
         return "<required parameter>"
@@ -25,10 +28,17 @@ def sgd(params: List[Tensor],
         lr: float,
         dampening: float,
         nesterov: bool):
-    r"""Correcting SGD for sparse operations
+    r"""This function implements the SGD algorithm. It is a wrapper around the PyTorch optimizer SGD.
+    It also corrects the SGD algorithm for the case where the learning rate is not constant over
+    the epoch.
 
-    Functional API that performs SGD algorithm computation.
+    It is a functional API that performs SGD algorithm computation.
     See :class:`~torch.optim.SGD` for details.
+
+    The SGD algorithm is a simple stochastic gradient descent method that is used to update the
+    parameters of a model. It is a simple, but very effective method for training neural networks and
+    is a good choice for smaller datasets. It is also a good choice for training a model with a
+    large number of parameters.
     """
 
     for i, param in enumerate(params):
