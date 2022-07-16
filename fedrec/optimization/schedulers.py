@@ -14,6 +14,21 @@ class LRPolicyScheduler(_LRScheduler):
     
     The LRPolicy is designed to decrease the learning rate after a fixed
     number of epochs, and increase it after a fixed number of epochs.
+
+    Arguments:
+        optimizer():
+            Optimizer instance. This is the optimizer that will be used to
+            update the model.
+        num_warmup_steps():
+            Number of warmup steps. The learning rate will be increased after
+            this number of steps.
+        decay_start_step():
+            Step at which the learning rate decay starts. The learning rate
+            will be decreased after this number of steps.
+        num_decay_steps():
+            Number of steps after which the learning rate will be decreased.
+        
+    Methods:
     """
     def __init__(self,
                  optimizer,
