@@ -13,6 +13,9 @@ class RWSAdagrad(Optimizer):
     variant of the Adagrad optimizer that uses a running average of the
     squared gradient to improve the learning rate for sparse gradients.
 
+    It raises an error if the gradients are sparse and the weight_decay is
+    non-zero since the sparse Adagrad algorithm does not support weight decay.
+
     Arguments:
         params(iterable):
             Iterable of parameters to optimize or dicts defining
@@ -83,12 +86,6 @@ class RWSAdagrad(Optimizer):
                     state['sum'].share_memory_()
 
     def step(self, closure=None):
-        """Performs a single optimization step.
-        
-        Arguments:
-            closure (callable, optional): A closure that reevaluates the model
-                and returns the loss.
-        """
         loss = None
         if closure is not None:
             loss = closure()
