@@ -14,15 +14,28 @@ class RWSAdagrad(Optimizer):
     squared gradient to improve the learning rate for sparse gradients.
 
     Arguments:
-        params (iterable): iterable of parameters to optimize or dicts defining
+        params(iterable):
+            Iterable of parameters to optimize or dicts defining
             parameter groups
-        lr (float, optional): learning rate (default: 1e-2)
-        lr_decay (float, optional): learning rate decay (default: 0)
-        weight_decay (float, optional): weight decay (L2 penalty) (default: 0)
-        eps (float, optional): term added to the denominator to improve
-            numerical stability (default: 1e-10)
-        initial_accumulator_value (float, optional): initial value for the
-            accumulators (default: 0)
+        lr(float, optional):
+            Learning rate (default: 1e-2)
+        lr_decay(float, optional):
+            Learning rate decay (default: 0)
+        weight_decay(float, optional):
+            Weight decay (L2 penalty) (default: 0)
+        eps(float, optional):
+            Term added to the denominator to improve numerical stability
+            (default: 1e-10)
+        initial_accumulator_value(float, optional):
+            Initial value for the accumulators (default: 0)
+
+    Methods:
+        share_memory():
+            Share memory for all workers in the same GPU. This is necessary for
+            distributed training.
+        step():
+            Performs a single optimization step on the given parameters and
+            returns the loss (default: None). Overrides the default method.
     """
 
     def __init__(self, params,
