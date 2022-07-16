@@ -28,7 +28,11 @@ class LRPolicyScheduler(_LRScheduler):
         num_decay_steps():
             Number of steps after which the learning rate will be decreased.
         
-    Methods:
+    Method:
+        get_lr():
+            Returns the learning rate for the current step. This method is
+            called by the optimizer to get the learning rate for the current
+            step.
     """
     def __init__(self,
                  optimizer,
