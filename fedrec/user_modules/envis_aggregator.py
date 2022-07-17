@@ -9,9 +9,12 @@ class EnvisAggregator(EnvisBase):
     modules that are trained on the same data set. We can also aggregate the
     results of multiple modules that are trained on different data sets.
 
-    Arguments
-    ---------
-
+    Methods
+    -------
+    __call__():
+        Aggregate the results of the modules.
+    __repr__():
+        Return a string representation of the object.
     """
 
     def __init__(self, **kwargs):
