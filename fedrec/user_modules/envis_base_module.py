@@ -9,7 +9,13 @@ from fedrec.utilities.random_state import Reproducible
 
 class EnvisBase(Reproducible):
     """
-    Base class for Envis.
+    This class stores the state of the object in the form of a dictionary.
+    The dictionary is then serialized and stored in the log directory of the
+    experiment. This is done to ensure that the state of the object is not
+    lost when the experiment is resumed from a checkpoint. This is done by
+    calling the serialize method of the object.
+
+    
     """
 
     def __init__(self, config: Dict):
