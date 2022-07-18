@@ -12,7 +12,11 @@ from fedrec.utilities.logger import BaseLogger
 
 class Aggregator(BaseActor, ABC):
     """
-    This class is used to aggregate the data from a list of actors.
+    This class is used to aggregate the data from a list of actors. The
+    aggregation is done by calling the function in the aggregator. The
+    function is called with the data from the actors, and the result is
+    returned to the caller after aggregation. The caller can then use the
+    result to train the model.
 
     Attributes
     ----------
@@ -28,6 +32,16 @@ class Aggregator(BaseActor, ABC):
         Neighbours from which the the worker can take the models
     out_neighbours : List[`Neighbour`]
         Neighbours to which the worker can broadcast its model
+    
+    Methods
+    -------
+    serialize()
+        Serialise the state of the worker to a AggregatorState.
+    load_worker()
+        Constructs a aggregator object from the state.
+    run()
+        Run the aggregation process for the worker and return the result of
+        the aggregation.
     """
 
     def __init__(self,
