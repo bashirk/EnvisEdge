@@ -14,6 +14,50 @@ from fedrec.utilities.logger import BaseLogger
 
 @attr.s
 class TrainConfig:
+    """
+    This class stores the training configuration for the model. It is used to
+    pass the configuration to the trainer. The trainer then uses the configuration
+    to train the model. The trainer also uses the configuration to save the model.
+
+    Attributes
+    ----------
+    eval_every_n: int
+        The number of epochs after which the model is evaluated on the test set.
+    report_every_n: int
+        The number of epochs after which the model is reported on the test set.
+    save_every_n: int
+        The number of epochs after which the model is saved.
+    keep_every_n: int
+        The number of epochs after which the model is kept.
+    batch_size: int
+        The batch size for the training.
+    eval_batch_size: int
+        The batch size for the evaluation.
+    num_epochs: int
+        The number of epochs for training.
+    num_batches: int
+        The number of batches for training.
+    num_eval_batches: int
+        The number of batches for evaluation.
+    eval_on_train: bool
+        Whether to evaluate the model on the training set.
+    eval_on_test: bool
+        Whether to evaluate the model on the test set.
+    eval_on_val: bool
+        Whether to evaluate the model on the validation set.
+    num_workers: int
+        The number of workers for data loading.
+    pin_memory: bool
+        Whether to use pinned memory for data loading.
+    log_gradients: bool
+        Whether to log the gradients.
+    
+    Methods
+    -------
+    check_only_one_declaration()
+        Checks if only one of the following is declared: eval_on_train, eval_on_test, eval_on_val.
+        
+    """
     eval_every_n = attr.ib(default=10000)
     report_every_n = attr.ib(default=10)
     save_every_n = attr.ib(default=2000)
