@@ -15,7 +15,7 @@ from fedrec.utilities import registry
 
 class Jobber:
     """
-    The Jobber class is a utility class that executes the pipeline and
+    Jobber class executes the pipeline and
     publishes the results. It handles job requests based on the job type
     and can also be extended to handle other job types.
     
