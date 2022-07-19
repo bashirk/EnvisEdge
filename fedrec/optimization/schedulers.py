@@ -9,11 +9,14 @@ class LRPolicyScheduler(_LRScheduler):
     """
     This class is used to adjust the learning rate of the optimizer during
     training. It implements the LRPolicy, which is a learning rate decay
-    policy described in the paper "Lazy Layer Scheduling for Training of
-    Deep Neural Networks."
+    policy as described in the paper "`Demystifying Learning Rate Policies
+    for High Accuracy Training of Deep Neural Networks
+    <https://arxiv.org/pdf/1908.06477.pdf>`_".
     
     The LRPolicy is designed to decrease the learning rate after a fixed
-    number of epochs, and increase it after a fixed number of epochs.
+    number of epochs, and increase it after a fixed number of epochs. The
+    LRScheduler is a wrapper around the Pytorch LRScheduler class, and is
+    used to adjust the learning rate of the optimizer.
 
     Arguments:
         optimizer():
