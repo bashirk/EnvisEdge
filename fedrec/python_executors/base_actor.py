@@ -53,7 +53,7 @@ class BaseActor(Reproducible, ABC):
     process_args()
         Processes the arguments before passing them to the model.
     run()
-        Runs the model on the given data. 
+        Runs the model on the given data.
     """
 
     def __init__(self,
