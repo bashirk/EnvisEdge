@@ -12,11 +12,11 @@ from fedrec.utilities.logger import BaseLogger
 
 class Aggregator(BaseActor, ABC):
     """
-    This class is used to aggregate the data from a list of actors. The
-    aggregation is done by calling the function in the aggregator. The
-    function is called with the data from the actors, and the result is
-    returned to the caller after aggregation. The caller can then use the
-    result to train the model.
+    This class aggregates the data from a list of actors by calling the
+    function in the aggregator. The function is invoked with
+    the data from the actors, and after aggregation, the result is
+    returned to the caller. Once the result is returned, the caller uses
+    it to train the model.
 
     Attributes
     ----------
