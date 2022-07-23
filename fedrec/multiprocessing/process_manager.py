@@ -83,12 +83,11 @@ class ProcessManager(ABC):
 class RayProcessManager(ProcessManager):
     """
     The RayProcessManager class manages the processes that are spawned
-    for multiprocessing. Like the ProcessManager class, it is used to
-    start, shutdown and check the status of the child processes for
-    executing the job.
+    for multiprocessing. It uses the Ray library to manage the processes that
+    are spawned.
 
-    The registry is used to automatically load the RayProcessManager class
-    when the ray module is imported, through the registry.load() decorator.
+    The RayProcessManager class inherits from the ProcessManager class and
+    overrides the distribute, start, shutdown, is_alive, and get_status methods.
     """
 
     def __init__(self) -> None:
