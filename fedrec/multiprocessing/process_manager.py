@@ -15,7 +15,11 @@ class ProcessManager(ABC):
     job.
 
     A ProcessManager is a class that manages the processes that are spawned
-    for multiprocessing.
+    for multiprocessing. During multiprocessing, the ProcessManager is
+    responsible for starting the processes that will be required for executing
+    the job. It is also responsible for shutting down the processes that are
+    spawned and also responsible for checking the status of the processes that
+    have been spawned.
 
     Attributes
     -----------
@@ -32,6 +36,15 @@ class ProcessManager(ABC):
         Check if the process is alive.
     get_status()
         Get the results of the child processes.
+    
+    Example
+    -----------
+    >>> from fedrec.utilities.process_manager import ProcessManager
+    >>> pm = ProcessManager() # Create a ProcessManager object
+    >>> pm.start() # Start the processes
+    >>> pm.shutdown() # Shutdown the processes
+    >>> pm.is_alive() # Check if the processes are alive
+    >>> pm.get_status() # Get the results of the processes
     """
 
     def __init__(self) -> None:
