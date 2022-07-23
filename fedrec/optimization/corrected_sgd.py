@@ -8,8 +8,12 @@ from torch import Tensor
 
 class _RequiredParameter(object):
     """
-    This class is a singleton class that is used to indicate that a parameter
-    is required for the optimizer to be instantiated.
+    Singleton class representing a required parameter for an Optimizer. This is
+    used to indicate that a parameter is required for the optimizer to be
+    instantiated. It is also used to ensure that all required parameters are
+    provided when the optimizer is instantiated by the user. This is done by
+    checking that all required parameters are present in the kwargs passed to
+    the constructor.
     """
 
     def __repr__(self):
