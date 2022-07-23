@@ -11,9 +11,9 @@ from fedrec.utilities.logger import BaseLogger
 
 class Trainer(BaseActor, ABC):
     """
-    The Trainer class is responsible for training the model. It executes the
-    training steps and updates the model weights. It also handles the data
-    loading and preprocessing.
+    The Trainer class is responsible for training the model, updating the
+    model weights, and running the training steps. It also handles the loading
+    and preprocessing of data.
 
     Attributes
     ----------
