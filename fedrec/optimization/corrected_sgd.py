@@ -28,9 +28,9 @@ def sgd(params: List[Tensor],
         lr: float,
         dampening: float,
         nesterov: bool):
-    r"""This function implements the SGD algorithm. It is a wrapper around the
-    PyTorch optimizer SGD, and it corrects the SGD algorithm for the case where
-    the learning rate is not constant over the epoch.
+    r"""This function implements the SGD algorithm. It is a Pytorch-specific
+    implementation of the SGD algorithm, and it corrects the SGD algorithm
+    for the case where the learning rate is not constant over the epoch.
 
     Functional API that performs SGD algorithm computation.
     See :class:`~torch.optim.SGD` for details.
