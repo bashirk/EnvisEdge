@@ -32,7 +32,7 @@ def sgd(params: List[Tensor],
     PyTorch optimizer SGD, and it corrects the SGD algorithm for the case where
     the learning rate is not constant over the epoch.
 
-    It is a functional API that performs SGD algorithm computation.
+    Functional API that performs SGD algorithm computation.
     See :class:`~torch.optim.SGD` for details.
 
     The SGD algorithm is a simple stochastic gradient descent method that is
