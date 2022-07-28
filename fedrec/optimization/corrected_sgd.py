@@ -14,7 +14,8 @@ class _RequiredParameter(object):
     
     It is also used to ensure that all required parameters are provided when
     the optimizer is instantiated by the user. This is done by checking that
-    all required parameters are present in the kwargs passed to the constructor.
+    all required parameters are present in the kwargs passed to the
+    constructor.
     """
 
     def __repr__(self):
