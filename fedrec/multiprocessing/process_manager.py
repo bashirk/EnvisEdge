@@ -87,7 +87,8 @@ class RayProcessManager(ProcessManager):
     are spawned.
 
     The RayProcessManager class inherits from the ProcessManager class and
-    overrides the distribute, start, shutdown, is_alive, and get_status methods.
+    overrides the distribute, start, shutdown, is_alive, and get_status
+    methods.
     """
 
     def __init__(self) -> None:
