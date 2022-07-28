@@ -113,22 +113,22 @@ class EnvisTrainer(EnvisBase):
         The data loaders are created by the model preprocessor and are stored
         in the data_loaders dictionary.
     eval_model()
-        Evaluates the model on the test set. This is important to check the model
-        performance. It also sets the model to eval mode so that it does not use
-        the dropout.
+        Evaluates the model on the test set. This is important to check the
+        model performance. It also sets the model to eval mode so that it
+        does not use the dropout.
     store_state()
-        Stores the state of the model. This is used to save the model. It stores
-        the model and the optimizer by calling the save_state_dict method of the
-        model and optimizer.
+        Stores the state of the model. This is used to save the model. It
+        stores the model and the optimizer by calling the save_state_dict
+        method of the model and optimizer.
     test()
         Tests the model on the test set. This is used to check the model
         performance. It also sets the model to eval mode so that it does
         not use the dropout.
     train()
-        Trains the model. This is used to train the model. It also sets the model
-        to train mode so that it uses the dropout. And it checks if the model is
-        already trained. If not, it trains the model and evaluates the model on
-        the test set.
+        Trains the model. This is used to train the model. It also sets the
+        model to train mode so that it uses the dropout. And it checks if the
+        model is already trained. If not, it trains the model and evaluates
+        the model on the test set.
     update()
         Updates the model. This is used to update the model. It also sets the
         model to train mode so that it uses the dropout.
