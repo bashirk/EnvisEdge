@@ -77,9 +77,9 @@ def create_serializer_hooks(class_ref):
 
 def create_envis_state_hooks(class_ref):
     """
-    This function creates hooks to the class_ref to serialize and deserialize the
-    state of the class_ref. The hooks are added to the class_ref as properties
-    of the class_ref.
+    This function creates hooks to the class_ref to serialize and deserialize
+    the state of the class_ref. The hooks are added to the class_ref as
+    properties of the class_ref.
 
     Arguments
     ---------
