@@ -12,11 +12,16 @@ from fedrec.utilities.logger import BaseLogger
 
 class Aggregator(BaseActor, ABC):
     """
-    This class aggregates the data from a list of actors by calling the
-    function in the aggregator. The function is invoked with
-    the data from the actors, and after aggregation, the result is
-    returned to the caller. Once the result is returned, the caller uses
-    it to train the model.
+    The Aggregator class is the base class for all the aggregation workers.
+    It performs the aggregation with the help of the ABC class and the
+    BaseActor class which both provide the basic functionality for the
+    workers.
+
+    It does the aggregation by calling the functions in the aggregator. The
+    function is invoked with the data from the actors, and after aggregation,
+    the result is returned to the caller. Once the result is returned, the
+    caller uses it to train the model. The functions are called by the run
+    method.
 
     Attributes
     ----------
