@@ -9,15 +9,17 @@ from fedrec.utilities.random_state import Reproducible
 
 class EnvisBase(Reproducible):
     """
-    This class stores the state of the object in the form of a dictionary.
-    The dictionary is then serialized and stored in the log directory of the
-    experiment. This is done to ensure that the state of the object is not
-    lost when the experiment is resumed from a checkpoint. This is done by
-    calling the serialize method of the object.
+    The EnvisBase class is the base class for all the modules in the
+    Envis framework. It provides the basic functionality for the modules
+    to store their state and load their state from the storage. It is also
+    helped by the Reproducible class for the purpose of reproducing the
+    same results.
 
-    The state of the object is then updated with the state dictionary stored
-    in the log directory. This is done by calling the deserialize method of
-    the object.
+    The EnvisBase class is also responsible for the storage of the state of
+    the object in the form of a dictionary. The dictionary is then serialized
+    and stored in the log directory of the experiment. This is done to ensure
+    that the state of the object is not lost when the experiment is resumed
+    from a checkpoint.
 
     Argumemts
     ---------
