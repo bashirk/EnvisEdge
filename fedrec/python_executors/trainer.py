@@ -15,6 +15,9 @@ class Trainer(BaseActor, ABC):
     model weights, and running the training steps. It also handles the loading
     and preprocessing of data.
 
+    It is dependent on the BaseActor class to handle the communication with the
+    server, and the EnvisBase class to handle the training of the model.
+
     Attributes
     ----------
     round_idx : int
