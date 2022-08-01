@@ -7,11 +7,13 @@ from fedrec.utilities.registry import Registrable
 @Registrable.register_class_ref
 class EnvisPreProcessor(Serializable):
     """
-    This class preprocesses the data and stores it in the storage. It also
-    loads the data and the data description from the storage.
+    The EnvisPreProcessor class is a wrapper around the dataset processor.
+    It is used to preprocess the data before training. It preprocesses the
+    data and stores it in the storage before it is used by the model.
 
-    The data is stored in the storage as a dictionary, where the keys are
-    the splits and the values are the data.
+    It uses the Serializable interface to serialize the data and store it
+    in the storage, where the data is later loaded by the model. It also
+    uses the Registratable interface to register the class in the registry.
 
     Arguments
     ---------
