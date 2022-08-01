@@ -13,9 +13,11 @@ from fedrec.utilities.logger import BaseLogger
 class Aggregator(BaseActor, ABC):
     """
     The Aggregator class is the base class for all the aggregation workers.
-    It performs the aggregation with the help of the ABC class and the
-    BaseActor class which both provide the basic functionality for the
-    workers.
+    It performs the aggregation with the help of the BaseActor class which
+    provides the basic functionality for the workers, and also with the help
+    of a base class for all abstract classes, the ABC, which is a Python
+    class that provides a set of methods that can be used to implement the
+    behavior of a class.
 
     It does the aggregation by calling the functions in the aggregator. The
     function is invoked with the data from the actors, and after aggregation,
