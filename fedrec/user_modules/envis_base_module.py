@@ -15,11 +15,10 @@ class EnvisBase(Reproducible):
     helped by the Reproducible class for the purpose of reproducing the
     same results.
 
-    The EnvisBase class is also responsible for the storage of the state of
-    the object in the form of a dictionary. The dictionary is then serialized
-    and stored in the log directory of the experiment. This is done to ensure
-    that the state of the object is not lost when the experiment is resumed
-    from a checkpoint.
+    The EnvisBase class is also in charge of storing the object's state in the
+    form of a dictionary. The dictionary is then serialized and saved in the
+    experiment's log directory. This is done to ensure that the object's state
+    is not lost when the experiment is restarted from a checkpoint.
 
     Argumemts
     ---------
