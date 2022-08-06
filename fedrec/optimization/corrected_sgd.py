@@ -8,9 +8,9 @@ from torch import Tensor
 
 class _RequiredParameter(object):
     """
-    Singleton class representing a required parameter for an Optimizer.
-    This is used to indicate that a parameter is required for the optimizer to
-    be instantiated.
+    _RequiredParameter is a singleton class that represents a required
+    parameter for an Optimizer. This is used to indicate that a parameter is
+    required for the optimizer to be instantiated.
     
     It is also used to ensure that all required parameters are provided when
     the optimizer is instantiated by the user. This is done by checking that
@@ -34,9 +34,10 @@ def sgd(params: List[Tensor],
         lr: float,
         dampening: float,
         nesterov: bool):
-    r"""The method `sgd`  implements the SGD algorithm. It is a Pytorch-specific
-    implementation of the SGD algorithm, and it corrects the SGD algorithm
-    for the case where the learning rate is not constant over the epoch.
+    r"""The method `sgd`  implements the SGD algorithm. It is a
+    Pytorch-specific implementation of the SGD algorithm, and it corrects the
+    SGD algorithm for the case where the learning rate is not constant over
+    the epoch.
 
     Functional API that performs SGD algorithm computation.
     See :class:`~torch.optim.SGD` for details.
