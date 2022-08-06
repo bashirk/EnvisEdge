@@ -16,7 +16,7 @@ class EnvisBase(Reproducible):
     the modules to be recreated with the same state as they were before the
     training.
 
-    The EnvisBase class is also in charge of storing the object's state in the
+    The EnvisBase class is in charge of storing the object's state in the
     form of a dictionary. The dictionary is then serialized and saved in the
     experiment's log directory. This is done to ensure that the object's state
     is not lost when the experiment is restarted from a checkpoint.
