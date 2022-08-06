@@ -37,7 +37,7 @@ class ArgsDict(dict):
 
 def create_link(original, link_name):
     """
-    The method creates a symbolic link to the original file.
+    create_link() creates a symbolic link to the original file.
     If the link already exists, it deletes it and creates a new
     one. This is useful for keeping the latest checkpoint.
     """
@@ -56,7 +56,7 @@ def load_checkpoint(model,
                     map_location=None,
                     step=None):
     """
-    The method loads the model and the optimizer checkpoints from the
+    load_checkpoint() loads the model and the optimizer checkpoints from the
     given model directory if it exists, and if the path to the model
     directory does not exist, it returns without errors.
     
@@ -86,8 +86,8 @@ def load_checkpoint(model,
 
 def load_and_map_checkpoint(model, model_dir, remap):
     """
-    The method loads the model and the optimizer checkpoints from the
-    given model directory, then maps the state dictionaries.
+    load_and_map_checkpoint() loads the model and the optimizer checkpoints
+    from the given model directory, then maps the state dictionaries.
     
     It filters out unnecessary keys from state_dict, overwrites entries
     in the existing state_dict, and maps the state_dict before loading
@@ -113,7 +113,7 @@ def save_checkpoint(model,
                     ignore=[],
                     keep_every_n=10000000):
     """
-    The method saves the model and the optimizer checkpoints to the
+    save_checkpoint() saves the model and the optimizer checkpoints to the
     given model directory. It also saves the current training step and
     epoch, also creates a symbolic link to the latest checkpoint.
 
