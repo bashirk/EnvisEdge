@@ -7,10 +7,10 @@ from torch.optim.lr_scheduler import _LRScheduler
 @registry.load('lr_scheduler', 'dlrm')
 class LRPolicyScheduler(_LRScheduler):
     """
-    LRPolicyScheduler is used to adjust the learning rate of the optimizer during
-    training. It implements the LRPolicy, which is a learning rate decay
-    policy as described in the paper "`Demystifying Learning Rate Policies
-    for High Accuracy Training of Deep Neural Networks
+    LRPolicyScheduler is used to adjust the learning rate of the optimizer
+    during training. It implements the LRPolicy, which is a learning rate
+    decay policy as described in the paper "`Demystifying Learning Rate
+    Policies for High Accuracy Training of Deep Neural Networks
     <https://arxiv.org/pdf/1908.06477.pdf>`_".
     
     The LRPolicy is designed to decrease the learning rate after a fixed
