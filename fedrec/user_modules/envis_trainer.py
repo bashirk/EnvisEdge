@@ -16,9 +16,9 @@ from fedrec.utilities.logger import BaseLogger
 class TrainConfig:
     """
     The TrainConfig class stores the training configuration for the model. It
-    is used to pass the configuration to the trainer. The trainer then uses
-    the configuration to train the model. The trainer also uses the
-    configuration to save the model.
+    is used to pass the configuration to the trainer. The trainer uses the
+    configuration to train the model. The trainer also uses the configuration
+    to save the model.
 
     Attributes
     ----------
@@ -90,9 +90,9 @@ class TrainConfig:
 
 class EnvisTrainer(EnvisBase):
     """
-    EnvisTrainer is used to train the model. It is responsible for training the
-    model and evaluating the model on the test set. It also saves the model and
-    reports the model on the test set.
+    EnvisTrainer is used to train the model. It is in charge of training the
+    model and evaluating the model on the test set. It also saves the model
+    and reports the model on the test set.
 
     Methods
     -------
