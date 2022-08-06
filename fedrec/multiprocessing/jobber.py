@@ -15,12 +15,12 @@ from fedrec.utilities import registry
 
 class Jobber:
     """
-    The Jobber class executes the pipeline and publishes the results. It
-    handles job requests based on the job type and can also be extended
-    to handle other job types.
+    The Jobber class is a singleton class that handles the batch scheduling
+    of job requests to run in sequence, based on the job type. It is a utility
+    program that executes the pipeline for the job requests and publishes
+    the results in the order in which the job requests are received.
     
-    The job type and the job arguments are defined in the job request.
-    The job request is a dictionary that contains the job type and the
+    A job request is a dictionary that contains the job type and the
     job arguments.
 
     Arguments
