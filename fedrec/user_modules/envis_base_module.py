@@ -9,12 +9,9 @@ from fedrec.utilities.random_state import Reproducible
 
 class EnvisBase(Reproducible):
     """
-    The EnvisBase class is the base class for all the modules in the
-    fedrec module. It provides the basic functionality for the modules
-    to store their state and load their state from the storage. It is also
-    helped by the Reproducible class which provides the functionality for
-    the modules to be recreated with the same state as they were before the
-    training.
+    The EnvisBase class is the base class for all the modules in the fedrec
+    module. It provides the basic functionality for the modules to store their
+    state and load their state from the storage.
 
     The EnvisBase class is in charge of storing the object's state in the
     form of a dictionary. The dictionary is then serialized and saved in the
