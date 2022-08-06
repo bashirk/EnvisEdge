@@ -90,7 +90,7 @@ class TrainConfig:
 
 class EnvisTrainer(EnvisBase):
     """
-    This class is used to train the model. It is responsible for training the
+    EnvisTrainer is used to train the model. It is responsible for training the
     model and evaluating the model on the test set. It also saves the model and
     reports the model on the test set.
 
