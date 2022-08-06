@@ -9,7 +9,7 @@ registry.load('optimizer', 'sparse_adam')(torch.optim.SparseAdam)
 @registry.load("optimizer", "rwsadagrad")
 class RWSAdagrad(Optimizer):
     """
-    This class implements the Row Wise Sparse Adagrad algorithm. It is a
+    RWSAdagrad implements the Row Wise Sparse Adagrad algorithm. It is a
     variant of the Adagrad optimizer that uses a running average of the
     squared gradient to improve the learning rate for sparse gradients.
 
