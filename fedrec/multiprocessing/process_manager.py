@@ -10,9 +10,11 @@ from fedrec.utilities import registry
 
 class ProcessManager(ABC):
     """
-    This class is used to manage the child processes. It is used to start,
-    shutdown and check the status of the child processes for executing the
-    job.
+    The ProcessManager class is a base class for the ProcessManager classes
+    that are used to manage the child processes. It provides the basic
+    functionality for managing the child processes, and it is essentially used
+    to start, shutdown, and check the status of the child processes for
+    executing the job.
 
     A ProcessManager is a class that manages the processes that are spawned
     for multiprocessing. During multiprocessing, the ProcessManager is
@@ -82,13 +84,17 @@ class ProcessManager(ABC):
 @registry.load("process_manager", "ray")
 class RayProcessManager(ProcessManager):
     """
-    The RayProcessManager class manages the processes that are spawned
-    for multiprocessing. It uses the Ray library to manage the processes that
-    are spawned.
-
-    The RayProcessManager class inherits from the ProcessManager class and
-    overrides the distribute, start, shutdown, is_alive, and get_status
-    methods.
+    The RayProcessManager class manages the processes that are spawned for
+    multiprocessing. It uses the Ray library to manage the processes that
+    are spawned. The Ray library is a distributed Python library that allows
+    the user to execute Python functions asynchronously.
+    
+    The RayProcessManager class also builds on the ProcessManager class by
+    adding the ability to execute asynchronous processing of child processes.
+    A process is a program that is under execution, and it is an important
+    component of any distributed system. Meanwhile, process management involves
+    different tasks such as starting, stopping, checking the status of the
+    processes, and also deadlocking the processes.
     """
 
     def __init__(self) -> None:
