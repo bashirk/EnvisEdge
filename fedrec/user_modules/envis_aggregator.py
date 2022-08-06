@@ -12,8 +12,6 @@ class EnvisAggregator(EnvisBase):
 
     Methods
     -------
-    __call__():
-        Aggregate the results of the modules.
     __repr__():
         Return a string representation of the object.
     """
