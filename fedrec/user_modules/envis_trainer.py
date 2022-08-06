@@ -15,10 +15,10 @@ from fedrec.utilities.logger import BaseLogger
 @attr.s
 class TrainConfig:
     """
-    This class stores the training configuration for the model. It is used to
-    pass the configuration to the trainer. The trainer then uses the
-    configuration to train the model. The trainer also uses the configuration
-    to save the model.
+    The TrainConfig class stores the training configuration for the model. It
+    is used to pass the configuration to the trainer. The trainer then uses
+    the configuration to train the model. The trainer also uses the
+    configuration to save the model.
 
     Attributes
     ----------
