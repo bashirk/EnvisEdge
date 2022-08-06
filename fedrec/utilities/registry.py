@@ -24,7 +24,7 @@ LOOKUP_DICT = collections.defaultdict(dict)
 
 def load(kind, name):
     """
-    This function returns a decorator function to store object
+    The method returns a decorator function to store object
     definitions for models, trainers, workers, etc., in the registry.
     
     It also validates the object definition before the definition
@@ -68,7 +68,7 @@ def load(kind, name):
 
 def lookup(kind, name):
     """
-    This function returns an object definition by loading the
+    The method returns an object definition by loading the
     stored object definition from the registry and arguments
     from a configuration file.
     
@@ -112,7 +112,7 @@ def lookup(kind, name):
 
 def construct(kind, config, unused_keys=(), **kwargs):
     """
-    This function constructs an object after verifying its parameters. It
+    The method constructs an object after verifying its parameters. It
     is similar to instantiate except that it does not instantiate the
     object. It just constructs the object.
 
@@ -165,7 +165,7 @@ def construct(kind, config, unused_keys=(), **kwargs):
 
 def instantiate(callable, config, unused_keys=(), **kwargs):
     """
-    This function instantiates an object after verifying its parameters.
+    The method instantiates an object after verifying its parameters.
     It is similar to construct except that it instantiates the object. It
     is used to instantiate the object definition from the configuration file.
 
