@@ -12,8 +12,8 @@ class EnvisPreProcessor(Serializable):
     stores it in the storage before it is used by the model.
 
     It uses the Serializable interface to serialize the data and store it
-    in the storage, where the data is later loaded by the model. It also
-    uses the Registratable interface to register the class in the registry.
+    in the storage, where the data is later loaded by the model. It adds
+    the class to the registry using the Registrable interface.
 
     Arguments
     ---------
