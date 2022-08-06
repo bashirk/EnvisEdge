@@ -3,7 +3,7 @@ from collections import defaultdict
 
 class WorkerDataset:
     """
-     WorkerDataset is used to add and fetch workers for training based on their
+    WorkerDataset is used to add and fetch workers for training based on their
     specific role and ID. It can be used for distributed training.
     ...
 
