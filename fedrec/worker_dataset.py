@@ -3,12 +3,8 @@ from collections import defaultdict
 
 class WorkerDataset:
     """
-    This class represents a dataset of workers and includes methods
-    for adding and loading federated workers.
-
-    The WorkerDataset class also allows for the retrieval
-    of workers based on their role IDs. This is useful for the
-    distributed training process.
+     WorkerDataset is used to add and fetch workers for training based on their
+    specific role and ID. It can be used for distributed training.
     ...
 
     Attributes
