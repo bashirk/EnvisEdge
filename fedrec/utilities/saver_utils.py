@@ -56,9 +56,9 @@ def load_checkpoint(model,
                     map_location=None,
                     step=None):
     """
-    This function loads the model and the optimizer checkpoints from the
-    given model directory if it exists, and if the path to the model directory
-    does not exist, it returns without errors.
+    The method loads the model and the optimizer checkpoints from the
+    given model directory if it exists, and if the path to the model
+    directory does not exist, it returns without errors.
     
     This is useful for loading the model from a checkpoint when the model
     directory does not exist. It also loads the current training step.
@@ -86,7 +86,7 @@ def load_checkpoint(model,
 
 def load_and_map_checkpoint(model, model_dir, remap):
     """
-    This function loads the model and the optimizer checkpoints from the
+    The method loads the model and the optimizer checkpoints from the
     given model directory, then maps the state dictionaries.
     
     It filters out unnecessary keys from state_dict, overwrites entries
@@ -113,7 +113,7 @@ def save_checkpoint(model,
                     ignore=[],
                     keep_every_n=10000000):
     """
-    This function saves the model and the optimizer checkpoints to the
+    The method saves the model and the optimizer checkpoints to the
     given model directory. It also saves the current training step and
     epoch, also creates a symbolic link to the latest checkpoint.
 
@@ -164,7 +164,7 @@ def save_checkpoint(model,
 
 class Saver(object):
     """
-    This class manages save and restore for the model and optimizer
+    The Saver class manages save and restore for the model and optimizer
     checkpoints. It saves the model and optimizer checkpoints
     during training and loads the model and optimizer checkpoints
     during testing.
