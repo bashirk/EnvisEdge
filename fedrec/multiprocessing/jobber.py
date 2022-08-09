@@ -18,9 +18,8 @@ class Jobber:
     The Jobber class is a singleton class that handles the batch scheduling
     of job requests to run in sequence, based on the job type. It is a utility
     program that executes the pipeline for the job requests and publishes
-    the results in the order in which the job requests are received.
-    
-    A job request is a dictionary that contains the job type and the
+    the results in the order in which the job requests are received. A `job 
+    request` is a dictionary that contains the job type and the
     job arguments.
 
     Arguments
