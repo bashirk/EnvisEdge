@@ -113,7 +113,7 @@ def save_checkpoint(model,
                     ignore=[],
                     keep_every_n=10000000):
     """
-    save_checkpoint() saves the model and the optimizer checkpoints to the
+    `save_checkpoint` saves the model and the optimizer checkpoints to the
     given model directory. It also saves the current training step and
     epoch, also creates a symbolic link to the latest checkpoint.
 
