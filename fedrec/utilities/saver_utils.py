@@ -17,7 +17,7 @@ class ArgsDict(dict):
     model, trainer, etc.
     
     The dictionary is created from the input arguments in the order they are
-    passed to the function. The dictionary is then converted to a dictionary
+    passed to the function. The dictionary is then converted into a dictionary
     of arguments for the model, trainer, etc. by using the __dict__ attribute
     of the ArgsDict class. This is done to avoid the use of the __dict__
     attribute of the dictionary class.
