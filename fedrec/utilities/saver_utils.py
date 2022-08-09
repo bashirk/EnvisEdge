@@ -37,7 +37,7 @@ class ArgsDict(dict):
 
 def create_link(original, link_name):
     """
-    create_link() creates a symbolic link to the original file.
+    `create_link` creates a symbolic link to the original file.
     If the link already exists, it deletes it and creates a new
     one. This is useful for keeping the latest checkpoint.
     """
