@@ -86,7 +86,7 @@ def load_checkpoint(model,
 
 def load_and_map_checkpoint(model, model_dir, remap):
     """
-    load_and_map_checkpoint() loads the model and the optimizer checkpoints
+    `load_and_map_checkpoint` loads the model and the optimizer checkpoints
     from the given model directory, then maps the state dictionaries.
     
     It filters out unnecessary keys from state_dict, overwrites entries
