@@ -56,7 +56,7 @@ def load_checkpoint(model,
                     map_location=None,
                     step=None):
     """
-    load_checkpoint() loads the model and the optimizer checkpoints from the
+    `load_checkpoint` loads the model and the optimizer checkpoints from the
     given model directory if it exists, and if the path to the model
     directory does not exist, it returns without errors.
     
