@@ -39,7 +39,7 @@ class EnvisAggregator(EnvisBase):
     >>> preproc = EnvisPreProcessor(config, logger)
     >>> trainer = EnvisTrainer(config, logger)
     >>> evaluator = EnvisEvaluator(config, logger)
-    >>> 
+    >>>
     >>> # aggregate the results
     >>> aggregator.aggregate(preproc, trainer, evaluator)
 
