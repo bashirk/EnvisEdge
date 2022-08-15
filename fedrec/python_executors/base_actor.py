@@ -14,11 +14,9 @@ from fedrec.utilities.random_state import Reproducible
 class BaseActor(Reproducible, ABC):
     """Base Actor implements the core federated learning logic.
     It encapsulates the ML trainer to enable distributed training
-    for the models defined in the standard setting.
-
-    It is helped by the Reproducible class to ensure that the same
-    random seed is used for the same worker. It also implements the
-    abstract methods to be implemented by the user.
+    for the models defined in the standard setting. It also provides
+    the basic functionality to save the model weights and the optimizer
+    state.
 
 
     Attributes
