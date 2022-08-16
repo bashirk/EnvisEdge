@@ -16,11 +16,10 @@ class Aggregator(BaseActor, ABC):
     It performs the aggregation with the help of the BaseActor class which
     provides the basic functionality for the workers.
 
-    It does the aggregation by calling the functions in the aggregator. The
-    function is invoked with the data from the actors, and after aggregation,
-    the result is returned to the caller. Once the result is returned, the
-    caller uses it to train the model. The functions are called by the run
-    method.
+    It is in charge of the aggregation of the data from the neighbours and
+    the passage of the data to the user module for further processing. It
+    does the aggregation by calling the aggregator functions, which are
+    invoked with the data from the neighbours and the user module.
 
     Attributes
     ----------
