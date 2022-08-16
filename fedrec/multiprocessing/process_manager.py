@@ -86,15 +86,18 @@ class RayProcessManager(ProcessManager):
     """
     The RayProcessManager class manages the processes that are spawned for
     multiprocessing. It uses the Ray library to manage the processes that
-    are spawned. The Ray library is a distributed Python library that allows
-    the user to execute Python functions asynchronously.
+    are spawned. The `Ray <https://github.com/ray-project/ray>`_ library is
+    a distributed Python library that allows the user to execute Python
+    functions asynchronously, and scale the execution of Python functions to
+    a large number of processes.
     
-    The RayProcessManager class also builds on the ProcessManager class by
-    adding the ability to execute asynchronous processing of child processes.
+    The RayProcessManager class also extends the ProcessManager class by
+    adding the functionality to execute the processes asynchronously.
     A process is a program that is under execution, and it is an important
-    component of any distributed system. Meanwhile, process management involves
-    different tasks such as starting, stopping, checking the status of the
-    processes, and also deadlocking the processes.
+    part of any distributed system. Meanwhile, process management involves
+    different tasks around the management of the processes, such as starting,
+    stopping, checking the status of the processes, and also deadlocking the
+    processes.
     """
 
     def __init__(self) -> None:
