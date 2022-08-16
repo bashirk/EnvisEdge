@@ -17,6 +17,21 @@ import FLSystemManager.{ RespondRealTimeGraph }
 // List of Trainer Identifiers is optional
 
 object RealTimeGraphQuery {
+	/** Query for real time graph
+	 *
+	 * This query is used to query the real time graph of the system with the given parameters.
+	 * It is sent to the system manager actor which will forward it to the appropriate aggregator
+	 * actor and will return the real time graph to the caller. The real time graph is updated when
+	 * the system manager actor receives a request for the real time graph.
+	 *
+	 * @param creator Identifier of the system manager actor who created this query
+	 * @param aggIdToRefMap Map of aggregator identifiers to actor references
+	 * @param traIds List of trainer identifiers
+	 * @param requestId Request ID
+	 * @param requester Requester actor reference
+	 * @param timeout Timeout for the query
+	 * @return Real time graph
+	 */
 	def apply(
 		creator: Either[OrchestratorIdentifier, AggregatorIdentifier],
 		aggIdToRefMap: Map[AggregatorIdentifier, ActorRef[Aggregator.Command]],
@@ -33,6 +48,10 @@ object RealTimeGraphQuery {
 	}
 
 	trait Command
+	/** The command needed to query the real time graph.
+	 *
+	 * This command is sent to the system manager actor to query the real time graph of the system.
+	 */
 	private case object CollectionTimeout extends Command
 
 	final case class WrappedRespondRealTimeGraph(response: RespondRealTimeGraph) extends Command
@@ -41,6 +60,22 @@ object RealTimeGraphQuery {
 }
 
 class RealTimeGraphQuery(
+	/** Identifier of the system manager actor who created this query.
+	 *
+	 * This is an identifier that is used to identify the system manager actor who created this query.
+	 * After the query is completed and the system manager actor has been identified, the system manager
+	 * actor will send a response to the requester actor notifying it that the query has been completed.
+	 *
+	 * @see [[RealTimeGraphQuery.WrappedRespondRealTimeGraph]]
+	 * @param creator Identifier of the system manager actor who created this query
+	 * @param aggIdToRefMap Map of aggregator identifiers to actor references
+	 * @param traIds List of trainer identifiers
+	 * @param requestId Request ID
+	 * @param requester Requester actor reference
+	 * @param timeout Timeout for the query
+	 * @param context Actor context of the system manager actor
+	 * @param timers TimerScheduler of the system manager actor
+	 */
 	creator: Either[OrchestratorIdentifier, AggregatorIdentifier],
 	aggIdToRefMap: Map[AggregatorIdentifier, ActorRef[Aggregator.Command]],
 	traIds: Option[List[TrainerIdentifier]],
@@ -72,6 +107,19 @@ class RealTimeGraphQuery(
 	}
 
 	override def onMessage(msg: Command): Behavior[Command] =
+	/** This method is called when the system manager actor receives a command.
+	 *
+	 * If the command is a [[RealTimeGraphQuery.CollectionTimeout]], the system manager actor will
+	 * send a response to the requester actor notifying it that the query has timed out. The system
+	 * manager actor will then stop the query actor.
+	 *
+	 * If the command is a [[RealTimeGraphQuery.WrappedRespondRealTimeGraph]], the system manager actor
+	 * will update the real time graph and send a response to the requester actor notifying it that the
+	 * query has been completed. The system manager actor will then stop the query actor.
+	 *
+	 * @param msg Command received by the system manager actor
+	 * @return Updated behavior of the system manager actor
+	 */
 		msg match {
 			case WrappedRespondRealTimeGraph(response) => onRespondRealTimeGraph(response)
 			case AggregatorTerminated(aggId) 	  => onAggregatorTerminated(aggId)
@@ -79,6 +127,15 @@ class RealTimeGraphQuery(
 		}
 
 	private def onRespondRealTimeGraph(response: RespondRealTimeGraph) : Behavior[Command] = {
+		/** This method is called when the system manager actor receives a response from an aggregator actor.
+		 *
+		 * The system manager actor will update the real time graph and send a response to the requester actor
+		 * notifying it that the query has been completed. Also, the system manager actor will then stop the
+		 * query actor.
+		 *
+		 * @param response Response received by the system manager actor
+		 * @return Updated behavior of the system manager actor
+		 */
 		val realTimeGraph = response.realTimeGraph
 		val aggId : AggregatorIdentifier = response.realTimeGraph match {
 
@@ -103,6 +160,11 @@ class RealTimeGraphQuery(
 	}
 
 	private def onAggregatorTerminated(aggId: AggregatorIdentifier): Behavior[Command] = {
+		/** This method is called when the system manager actor receives a notification that an aggregator actor has terminated.
+		 *
+		 * @param aggId Aggregator identifier
+		 * @return Updated behavior of the system manager actor
+		 */
 		if (stillWaiting(aggId)) {
 			// Send the empty List of children when Aggregator terminated.
 			repliesSoFar += (aggId -> Node(Right(aggId), Set.empty))
@@ -119,6 +181,10 @@ class RealTimeGraphQuery(
 	}
 
 	private def respondWhenAllCollected(): Behavior[Command] = {
+		/** This method is called when all aggregators have responded.
+		 *
+		 * @return Updated behavior of the system manager actor
+		 */
 		if (stillWaiting.isEmpty) {
 			// Construct a tree and return to requester
 			val children : Set[TopologyTree] = {
@@ -136,6 +202,15 @@ class RealTimeGraphQuery(
 	}
 
 	override def onSignal: PartialFunction[Signal, Behavior[Command]] = {
+		/** This method is called when the system manager actor receives a signal.
+		 *
+		 * If the signal is a [[RealTimeGraphQuery.CollectionTimeout]], the system manager actor will
+		 * send a response to the requester actor notifying it that the query has timed out. The system
+		 * manager actor will then stop the query actor.
+		 *
+		 * @param msg Signal received by the system manager actor
+		 * @return Updated behavior of the system manager actor
+		 */
 		case PostStop =>
 			context.log.info("RealTimeGraphQuery Actor for {} stopped", creator)
 			this
