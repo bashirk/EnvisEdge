@@ -17,7 +17,7 @@ class TrainConfig:
     """
     The TrainConfig class stores the training configuration for the model. It
     is used to pass the configuration to the trainer. The trainer uses the
-    configuration to train the model. The trainer also uses the configuration
+    configuration to training the model. The trainer uses the same configuration
     to save the model.
 
     Attributes
