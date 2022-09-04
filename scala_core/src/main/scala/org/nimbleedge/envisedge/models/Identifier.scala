@@ -4,29 +4,29 @@ import java.security.{MessageDigest => MD}
 import java.nio.ByteBuffer
 import scala.collection.mutable.ListBuffer
 
+/**
+ * The identifier as a byte array.
+ *
+ * @return the identifier as a byte array.
+ */
 sealed abstract class Identifier {
-    /**
-     * The identifier as a byte array.
-     *
-     * @return the identifier as a byte array.
-     */
     def name() : String
     def computeDigest() : Array[Byte]
     val digest : Array[Byte] = computeDigest()
     override val hashCode : Int = ByteBuffer.wrap(digest.slice(0,4)).getInt
 
+   /** The hash algorithm to use.
+    *
+    * This method is used to compute the hash of the identifier and the
+    * base name of the identifier. The base name is the name of the
+    * identifier without the hash, which ensures that the hash is
+    * independent of the order of the arguments.
+    *
+    * @param baseName the base name of the identifier.
+    * @param args the arguments of the identifier.
+    * @return the hash of the identifier.
+    */
     def hash(baseName: String, args: List[Identifier]): Array[Byte] = {
-        /** The hash algorithm to use.
-         *
-         * This method is used to compute the hash of the identifier and the
-         * base name of the identifier. The base name is the name of the
-         * identifier without the hash, which ensures that the hash is
-         * independent of the order of the arguments.
-         *
-         * @param baseName the base name of the identifier.
-         * @param args the arguments of the identifier.
-         * @return the hash of the identifier.
-         */
         val md = MD.getInstance("SHA-256")
         md.reset()
         md.update(baseName.getBytes("UTF-8"))
@@ -36,17 +36,17 @@ sealed abstract class Identifier {
         md.digest()
     }
 
+    /** This method is used to check if two identifiers are equal.
+     * 
+     * Currently, this method only checks if the identifiers are equal
+     * by comparing the digests. Although this is not a very strong
+     * check, it is sufficient for our purposes.
+     *
+     * @param identifier_val the identifier to compare to.
+     * @return true if the identifier is equal to the other identifier,
+     *         false otherwise.
+     */
     override def equals(identifier_val: Any): Boolean = {
-        /** This method is used to check if two identifiers are equal.
-         * 
-         * Currently, this method only checks if the identifiers are equal
-         * by comparing the digests. Although this is not a very strong
-         * check, it is sufficient for our purposes.
-         *
-         * @param identifier_val the identifier to compare to.
-         * @return true if the identifier is equal to the other identifier,
-         *         false otherwise.
-         */
         identifier_val match {
             case i : Identifier => hashCode == identifier_val.hashCode && MD.isEqual(digest, i.digest)
             case _ => false
@@ -82,14 +82,14 @@ sealed abstract class Identifier {
     // The removal of children from the list has to be done manually
 }
 
+/** The identifier as a byte array.
+ *
+ * This class is used to represent an identifier for an orchestrator node.
+ * 
+ * @param id the identifier of the orchestrator.
+ * @return the identifier as a byte array.
+ */
 case class OrchestratorIdentifier(id: String) extends Identifier {
-    /** The identifier as a byte array.
-     *
-     * This class is used to represent an identifier for an orchestrator node.
-     * 
-     * @param id the identifier of the orchestrator.
-     * @return the identifier as a byte array.
-     */
     // String Representation
     override def name(): String = id
     override def toString(): String = id
@@ -101,15 +101,15 @@ case class OrchestratorIdentifier(id: String) extends Identifier {
     override def computeDigest(): Array[Byte] = hash("_Orc" + id, List.empty)
 }
 
+/** The identifier as a byte array.
+ *
+ * The AggregatorIdentifier class is used to represent an identifier for an aggregator node.
+ * 
+ * @param parentIdentifier the identifier of the parent node.
+ * @param id the identifier of the aggregator.
+ * @return the identifier as a byte array.
+ */
 case class AggregatorIdentifier(parentIdentifier: Identifier, id: String) extends Identifier {
-    /** The identifier as a byte array.
-     *
-     * This class is used to represent an identifier for an aggregator node.
-     * 
-     * @param parentIdentifier the identifier of the parent node.
-     * @param id the identifier of the aggregator.
-     * @return the identifier as a byte array.
-     */
 
     // Add into parents children
     parentIdentifier.children += this
@@ -126,14 +126,15 @@ case class AggregatorIdentifier(parentIdentifier: Identifier, id: String) extend
 
     // Get Orchestrator
     // Always the root node
+
+    /** The getOrchestrator method is used to get the orchestrator of the current node.
+     *
+     * It gets the orchestrator by traversing the path of the current node
+     * and finding the first node that is an orchestrator.
+     *
+     * @return the orchestrator of the current node.
+     */
     def getOrchestrator(): OrchestratorIdentifier = {
-        /** This method is used to get the orchestrator of the current node.
-         *
-         * It gets the orchestrator by traversing the path of the current node
-         * and finding the first node that is an orchestrator.
-         *
-         * @return the orchestrator of the current node.
-         */
         val orcId = parentIdentifier.toList().head
         orcId match {
             case result @ OrchestratorIdentifier(_) => result
@@ -143,14 +144,15 @@ case class AggregatorIdentifier(parentIdentifier: Identifier, id: String) extend
 
     // Get List of parent aggregators
     // NOTE: Including the current aggregator identifier
+
+    /** This method is used to get the list of aggregators of the current node.
+     *
+     * It gets the list of aggregators by traversing the path of the current node
+     * and finding all the nodes that are aggregators.
+     *
+     * @return the list of aggregators of the current node.
+     */
     def getAggregators(): List[AggregatorIdentifier] = {
-        /** This method is used to get the list of aggregators of the current node.
-         *
-         * It gets the list of aggregators by traversing the path of the current node
-         * and finding all the nodes that are aggregators.
-         *
-         * @return the list of aggregators of the current node.
-         */
         parentIdentifier match {
             case OrchestratorIdentifier(_) => List.empty
             case _ => this.toList().drop(1).map(
@@ -163,15 +165,15 @@ case class AggregatorIdentifier(parentIdentifier: Identifier, id: String) extend
     }
 }
 
+/** The identifier as a byte array.
+ *
+ * This class is used to represent an identifier for a trainer node.
+ * 
+ * @param parentIdentifier the identifier of the parent node.
+ * @param id the identifier of the trainer.
+ * @return the identifier as a byte array.
+ */
 case class TrainerIdentifier(parentIdentifier: Identifier, id: String) extends Identifier {
-    /** The identifier as a byte array.
-     *
-     * This class is used to represent an identifier for a trainer node.
-     * 
-     * @param parentIdentifier the identifier of the parent node.
-     * @param id the identifier of the trainer.
-     * @return the identifier as a byte array.
-     */
 
     // Add into parents children
     parentIdentifier.children += this
@@ -188,14 +190,15 @@ case class TrainerIdentifier(parentIdentifier: Identifier, id: String) extends I
 
     // Get Orchestrator
     // Always the root node
+
+    /** This method is in charge of getting the orchestrator of the current node.
+     *
+     * It also gets the orchestrator by traversing the path of the current node
+     * and finding the first node that is an orchestrator.
+     *
+     * @return the orchestrator of the current node.
+     */
     def getOrchestrator(): OrchestratorIdentifier = {
-        /** This method is in charge of getting the orchestrator of the current node.
-         *
-         * It also gets the orchestrator by traversing the path of the current node
-         * and finding the first node that is an orchestrator.
-         *
-         * @return the orchestrator of the current node.
-         */
         val orcId = parentIdentifier.toList().head
         orcId match {
             case result @ OrchestratorIdentifier(_) => result
@@ -204,15 +207,15 @@ case class TrainerIdentifier(parentIdentifier: Identifier, id: String) extends I
     }
 
     // Get List of parent aggregators
+
+    /** The getAggregators method is used to get the list of aggregators of the current node.
+     *
+     * It gets the list of aggregators by traversing the path of the current node
+     * and finding all the nodes that are aggregators.
+     *
+     * @return the list of aggregators of the current node.
+     */
     def getAggregators(): List[AggregatorIdentifier] = {
-        /** This method is responsible for getting the list of aggregators of the current node.
-         *
-         * It gets the list of aggregators by traversing the path of the current node
-         * and finding all the nodes that are aggregators, and also throws an exception
-         * if the current node is not an aggregator.
-         *
-         * @return the list of aggregators of the current node.
-         */
         parentIdentifier match {
             case OrchestratorIdentifier(_) => List.empty
             case _ => parentIdentifier.toList().drop(1).map(
