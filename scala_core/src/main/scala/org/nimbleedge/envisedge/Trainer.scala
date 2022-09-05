@@ -10,7 +10,7 @@ import akka.actor.typed.Signal
 import akka.actor.typed.PostStop
 
 /**
- * The behavior of the Trainer actor.
+ * The object that defines the behavior of the Trainer actor.
  */
 object Trainer {
     def apply(traId: TrainerIdentifier): Behavior[Command] =
