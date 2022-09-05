@@ -8,10 +8,12 @@ import akka.actor.typed.scaladsl.ActorContext
 import akka.actor.typed.scaladsl.Behaviors
 
 object SimulatorSupervisor {
-	/** The behavior of the supervisor actor.
-	  * 
-	  * @return the behavior
-	  */
+	/** The object of the SimulatorSupervisor class
+	 * which is in charge of defining the behavior
+	 * of the supervisor actor.
+	 * 
+	 * @return the behavior
+	 */
 	// Update this to manager to other entities
 	def apply(): Behavior[Nothing] =
 		Behaviors.setup[Nothing](new SimulatorSupervisor(_))
