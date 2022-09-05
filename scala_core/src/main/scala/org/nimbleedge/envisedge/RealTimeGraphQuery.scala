@@ -205,7 +205,7 @@ class RealTimeGraphQuery(
 		}
 	}
 
-    /** The onSignal method is called when the system manager actor receives a signal.
+        /** The onSignal method is called when the system manager actor receives a signal.
 	 *
 	 * If the signal is a [[RealTimeGraphQuery.CollectionTimeout]], the system manager actor will
 	 * send a response to the requester actor notifying it that the query has timed out. The system
