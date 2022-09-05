@@ -17,34 +17,33 @@ object SimulatorSupervisor {
 		Behaviors.setup[Nothing](new SimulatorSupervisor(_))
 }
 
+/** The behavior of the supervisor actor.
+  * 
+  * This is the behavior of the supervisor actor itself. It is the top level behavior of the actor system
+  * and is responsible for creating the simulation environment and supervising the other actors. It is helped
+  * by the AbstractBehavior class which provides a lot of useful functionality around the supervision of
+  * actors.
+  *
+  * @param context the actor context
+  * @return the behavior
+  */
 class SimulatorSupervisor(context: ActorContext[Nothing]) extends AbstractBehavior[Nothing](context) {
-	/** The behavior of the supervisor actor.
-	  * 
-	  * This is the behavior of the supervisor actor itself. It is the top level behavior of the actor system
-	  * and is responsible for creating the simulation environment and supervising the other actors. It is helped
-	  * by the AbstractBehavior class which provides a lot of useful functionality around the supervision of
-	  * actors.
-	  *
-	  * @param context the actor context
-	  * @return the behavior
-	  */
 	context.log.info("Simulator Supervisor started")
 
+   /** The onMessage method is called when a message is received by the actor.
+    * 
+    * @param msg the message
+    * @return the behavior
+    */
 	override def onMessage(msg: Nothing): Behavior[Nothing] = {
-		/** The onMessage method is called when a message is received by the actor.
-		  * 
-		  * @param msg the message
-		  * @return the behavior
-		  */
 		Behaviors.unhandled
 	}
-
+	/** The onSignal method is called when a signal is received by the actor.
+	  * 
+	  * @param signal the signal
+	  * @return the behavior
+	  */
 	override def onSignal: PartialFunction[Signal, Behavior[Nothing]] = {
-		/** The onSignal method is called when a signal is received by the actor.
-		  * 
-		  * @param signal the signal
-		  * @return the behavior
-		  */
 		case PostStop =>
 			context.log.info("Simulator Supervisor stopped")
 			this
