@@ -19,7 +19,7 @@ import FLSystemManager.{ RespondRealTimeGraph }
 /** Query for real time graph
  *
  * This query is used to query the real time graph of the system with the given parameters.
- * It is sent to the system manager actor which will forward it to the appropriate aggregator
+ * It is sent to the system manager actor who will forward it to the appropriate orchestrator.
  * actor and will return the real time graph to the caller. The real time graph is updated when
  * the system manager actor receives a request for the real time graph.
  *
